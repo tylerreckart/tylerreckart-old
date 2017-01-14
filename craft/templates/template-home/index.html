@@ -1,0 +1,20 @@
+{% extends "_layout" %}
+
+{% do craft.sproutSeo.meta({
+        default: 'default',
+        title: "Journal"
+}) %}
+
+{% block content %}
+
+<script>
+  var template = 'home';
+</script>
+
+{%
+
+  include "components/slug"
+
+%}
+
+{% endblock %}

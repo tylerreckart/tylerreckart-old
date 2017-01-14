@@ -1,0 +1,19 @@
+<div class="meta">
+  <span id="date">{{ entry.postDate | date("l M d, Y") }}</span>
+  <span class="timestamp">({{ entry.postDate | time_diff }})</span> ·
+  <span id="time" class="reading-time">
+	{% for block in entry.contentSection %}
+    {% if block.type == 'body' %}
+
+    {% set statistics = block.body|readtime %}
+
+      {% if statistics > 1 %}
+        {{ statistics }}s read
+      {% else %}
+        {{ statistics }} read
+      {% endif %}
+
+    {% endif %}
+    {% endfor %}
+  </span>
+</div>

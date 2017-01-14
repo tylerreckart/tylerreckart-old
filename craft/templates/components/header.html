@@ -1,0 +1,20 @@
+<header id="header">
+  <h1 class="site-title"><a href="{{ siteUrl }}">{{ siteName }}</a></h1>
+
+  <nav>
+    <ul class="main-navigation">
+        <li class="nav-item">
+          <a class="{% if craft.request.getSegment(1) == 'journal' %} selected {% endif %} {% if craft.request.getSegment(1) == '' %} selected {% endif %}" href="/">/journal</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="{% if craft.request.getSegment(1) == 'about' %} selected {% endif %}" href="/about">/about</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="{% if craft.request.getSegment(1) == 'portfolio' %} selected {% endif %}" href="/portfolio">/portfolio</a>
+        </li>
+
+    </ul>
+  </nav>
+</header>

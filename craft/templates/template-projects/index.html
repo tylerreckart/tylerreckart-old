@@ -1,0 +1,21 @@
+{% extends "_layout" %}
+
+{% do craft.sproutSeo.meta({
+        default: 'default',
+        title: entry.title
+}) %}
+
+{% block content %}
+
+<script>
+  var template = 'projects';
+</script>
+
+{% for block in entry.projectContainer %}
+  <div class="project">
+    <h1 class="title">{{ block.heading }}</h1>
+    <div class="description">{{ block.body }}</div>
+  </div>
+{% endfor %}
+
+{% endblock %}
