@@ -1,13 +1,10 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getPosts } from '../actions/posts';
 
-const Header = (dispatch, props) => {
+const Header = (props) => {
   const {
     title,
   } = props;
-
-  dispatch(getPosts());
 
   return (
     <div>

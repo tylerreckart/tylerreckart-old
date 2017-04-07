@@ -13,6 +13,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const PostsList = connect(mapStateToProps)(App);
+const Blog = connect(mapStateToProps)(App);
 
-export default PostsList;
+export default Blog;

@@ -8,7 +8,6 @@ export const recievePosts = posts => ({
 export const getPosts = () => (
   (dispatch) => {
     firebase.database().ref('/posts/').once('value')
-    .then(snapshot => dispatch(recievePosts(JSON.parse(snapshot.val()))))
-    .done();
+    .then(snapshot => dispatch(recievePosts(snapshot.val())))
   }
 );
