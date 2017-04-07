@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import Raven from 'raven-js';
 import AppReducer from '../reducers';
 
@@ -24,9 +25,6 @@ const crashReporter = store => next => (action) => {
   }
 };
 
-const store = createStore(AppReducer, applyMiddleware(logger, crashReporter));
-
-// import { getPosts } from '../actions/posts';
-// store.dispatch(getPosts());
+const store = createStore(AppReducer, applyMiddleware(thunk, logger, crashReporter));
 
 export default store;

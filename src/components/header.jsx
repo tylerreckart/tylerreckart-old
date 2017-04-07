@@ -1,9 +1,13 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { getPosts } from '../actions/posts';
 
-const Header = (props) => {
+const Header = (dispatch, props) => {
   const {
     title,
   } = props;
+
+  dispatch(getPosts());
 
   return (
     <div>
@@ -25,4 +29,4 @@ Header.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default Header;
+export default connect()(Header);
