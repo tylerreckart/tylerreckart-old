@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { initializeApp } from 'firebase';
 // import firebase, { initializeApp } from 'firebase';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import AppReducer from './reducers';
 import App from './App';
 
 const config = {
@@ -19,7 +22,11 @@ initializeApp(config);
 //   console.log(snapshot.val());
 // });
 
+let store = createStore(AppReducer);
+
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root'),
 );
