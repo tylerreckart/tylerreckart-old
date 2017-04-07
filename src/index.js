@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import { initializeApp } from 'firebase';
 // import firebase, { initializeApp } from 'firebase';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import AppReducer from './reducers';
 import App from './App';
+import store from './store';
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -21,8 +20,6 @@ initializeApp(config);
 // firebase.database().ref('/posts/1').once('value').then((snapshot) => {
 //   console.log(snapshot.val());
 // });
-
-let store = createStore(AppReducer);
 
 ReactDOM.render(
   <Provider store={store}>
