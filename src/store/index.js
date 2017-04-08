@@ -1,4 +1,5 @@
-import { createStore, applyMiddleware } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
+import { persistStore, autoRehydrate } from 'redux-persist';
 import thunk from 'redux-thunk';
 import Raven from 'raven-js';
 import AppReducer from '../reducers';
@@ -25,6 +26,11 @@ const crashReporter = store => next => (action) => {
   }
 };
 
-const store = createStore(AppReducer, applyMiddleware(thunk, logger, crashReporter));
+const store = createStore(AppReducer, compose(
+  applyMiddleware(thunk, logger, crashReporter)),
+  autoRehydrate(),
+);
+
+persistStore(store);
 
 export default store;

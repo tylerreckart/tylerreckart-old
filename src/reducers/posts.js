@@ -1,3 +1,5 @@
+import { REHYDRATE } from 'redux-persist/constants';
+
 const posts = (state = {}, action) => {
   switch (action.type) {
     case 'GET_POSTS':
@@ -10,6 +12,10 @@ const posts = (state = {}, action) => {
         posts: action.posts,
         isFetching: false,
       };
+    case REHYDRATE:
+      let incoming = action.payload.myReducer;
+      if (incoming) return { ...state, ...incoming };
+      return state;
     default:
       return state;
   }
