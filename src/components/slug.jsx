@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 
 const PostSlug = (props) => {
   const {
+    className,
     content,
     title,
     url,
@@ -24,7 +25,7 @@ const PostSlug = (props) => {
   }
 
   return (
-    <div>
+    <div className={className}>
       <h2>{title}</h2>
       <p>{summarize(content)}</p>
       <a href={url}>Read More</a>
@@ -33,6 +34,7 @@ const PostSlug = (props) => {
 };
 
 PostSlug.propTypes = {
+  className: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
