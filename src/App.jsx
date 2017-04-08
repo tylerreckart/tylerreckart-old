@@ -1,25 +1,30 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { getPosts } from './actions';
 import Header from './components/header';
 import Feed from './components/feed';
 
-const App = (props) => {
-  const {
-    dispatch,
-  } = props;
+export default class App extends Component {
+  constructor(props) {
+    super(props);
 
-  // dispatch(getPosts());
+    const { dispatch } = props;
 
-  return (
-    <div>
-      <Header title="tylerreckart" />
-      <Feed />
-    </div>
-  );
-};
+    dispatch(getPosts());
+  }
+
+  render() {
+    const posts = this.props.posts !== undefined ? this.props.posts : [];
+
+    return (
+      <div>
+        <Header title="tylerreckart" />
+        <Feed posts={posts} />
+      </div>
+    );
+  }
+}
 
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  posts: PropTypes.array,
 };
-
-export default App;

@@ -1,17 +1,9 @@
 import { connect } from 'react-redux';
 import App from '../App';
 
-const displayPosts = (posts) => {
-  return {
-    posts,
-  };
-};
-
-const mapStateToProps = (state) => {
-  return {
-    posts: displayPosts(state.posts),
-  };
-};
+const mapStateToProps = state => ({
+  posts: state.post.posts,
+});
 
 const Blog = connect(mapStateToProps)(App);
 

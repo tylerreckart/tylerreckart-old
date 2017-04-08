@@ -10,8 +10,4 @@ const Meta = (props) => {
   );
 };
 
-Meta.propTypes = {
-  datePublished: PropTypes.string.isRequired,
-};
-
 export default Meta;

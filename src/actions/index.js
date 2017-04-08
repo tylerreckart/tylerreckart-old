@@ -1,5 +1,3 @@
-import * as firebase from 'firebase';
-
 export const recievePosts = posts => ({
   type: 'RECIEVE_POSTS',
   posts,
@@ -7,7 +5,14 @@ export const recievePosts = posts => ({
 
 export const getPosts = () => (
   (dispatch) => {
-    firebase.database().ref('/posts/').once('value')
-    .then(snapshot => dispatch(recievePosts(snapshot.val())))
+    fetch(process.env.REACT_APP_DATABASE_URL + '/posts.json', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(response => response.json())
+    .then(response => dispatch(recievePosts(response)))
+    .catch(error => console.error(error));
   }
 );
