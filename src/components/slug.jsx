@@ -1,27 +1,39 @@
 import React, { PropTypes } from 'react';
-import Meta from './meta';
 
 const PostSlug = (props) => {
   const {
-    datePublished,
-    summary,
+    content,
     title,
     url,
   } = props;
 
+  function handleStringLength(string, start, end) {
+    if (string.length > end) {
+      return `${string.substring(start, end).replace(/^\s+|\s+$/g, '')}...`;
+    }
+
+    return string;
+  }
+
+  function summarize(string) {
+    if (string.length > 350) {
+      return handleStringLength(string, 0, 350);
+    }
+
+    return string;
+  }
+
   return (
     <div>
       <h2>{title}</h2>
-      <Meta datePublished={datePublished} />
-      <p>{summary}</p>
+      <p>{summarize(content)}</p>
       <a href={url}>Read More</a>
     </div>
   );
 };
 
 PostSlug.propTypes = {
-  datePublished: PropTypes.string.isRequired,
-  summary: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };
