@@ -7,7 +7,7 @@ const Feed = (props) => {
 
   const Styles = StyleSheet.create({
     post: {
-      marginBottom: '1em',
+      marginBottom: '3em',
     },
     last: {
       marginBottom: 0,

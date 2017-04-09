@@ -4,9 +4,20 @@ const PostSlug = (props) => {
   const {
     className,
     content,
+    datePublished,
     title,
     url,
   } = props;
+
+  function formatDate(timestamp) {
+    const date = new Date(timestamp);
+
+    const day = date.getUTCDate();
+    const year = date.getUTCFullYear();
+    const month = date.getMonth();
+
+    return `${month}/${day}/${year}`;
+  }
 
   function handleStringLength(string, start, end) {
     if (string.length > end) {
@@ -14,6 +25,12 @@ const PostSlug = (props) => {
     }
 
     return string;
+  }
+
+  function readingTime(string) {
+    const minutes = Math.floor(string.length / 200);
+
+    return `(${minutes} minute read)`;
   }
 
   function summarize(string) {
@@ -27,6 +44,7 @@ const PostSlug = (props) => {
   return (
     <div className={className}>
       <h2>{title}</h2>
+      <span>{formatDate(datePublished)} {readingTime(content)}</span>
       <p>{summarize(content)}</p>
       <a href={url}>Read More</a>
     </div>
@@ -36,6 +54,7 @@ const PostSlug = (props) => {
 PostSlug.propTypes = {
   className: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  datePublished: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };

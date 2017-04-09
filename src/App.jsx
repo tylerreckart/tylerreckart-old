@@ -4,6 +4,13 @@ import { getPosts } from './actions';
 import Header from './components/header';
 import Feed from './components/feed';
 
+const Styles = StyleSheet.create({
+  container: {
+    margin: '0 auto',
+    maxWidth: '700px',
+  },
+});
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -24,13 +31,6 @@ export default class App extends Component {
     );
   }
 }
-
-const Styles = StyleSheet.create({
-  container: {
-    margin: '0 auto',
-    maxWidth: '700px',
-  },
-});
 
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
