@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import { css, StyleSheet } from 'aphrodite';
+import { formatDate, readingTime, summarize } from '../utils/componentUtils';
 
 const PostSlug = (props) => {
   const {
@@ -9,44 +11,34 @@ const PostSlug = (props) => {
     url,
   } = props;
 
-  function formatDate(timestamp) {
-    const date = new Date(timestamp);
-
-    const day = date.getUTCDate();
-    const year = date.getUTCFullYear();
-    const month = date.getMonth();
-
-    return `${month}/${day}/${year}`;
-  }
-
-  function handleStringLength(string, start, end) {
-    if (string.length > end) {
-      return `${string.substring(start, end).replace(/^\s+|\s+$/g, '')}...`;
-    }
-
-    return string;
-  }
-
-  function readingTime(string) {
-    const minutes = Math.floor(string.length / 200);
-
-    return `(${minutes} minute read)`;
-  }
-
-  function summarize(string) {
-    if (string.length > 350) {
-      return handleStringLength(string, 0, 350);
-    }
-
-    return string;
-  }
+  const Styles = StyleSheet.create({
+    meta: {
+      display: 'block',
+      margin: '.75em 0 .75em 0',
+    },
+    permalink: {
+      display: 'block',
+      margin: '.75em 0 0 0',
+    },
+    summary: {
+      lineHeight: '1.25em',
+    },
+    title: {
+      fontSize: '1.5em',
+      fontWeight: '600',
+    },
+  })
 
   return (
     <div className={className}>
-      <h2>{title}</h2>
-      <span>{formatDate(datePublished)} {readingTime(content)}</span>
-      <p>{summarize(content)}</p>
-      <a href={url}>Read More</a>
+      <h2 className={css(Styles.title)}>{title}</h2>
+
+      <span className={css(Styles.meta)}>
+        {formatDate(datePublished)} {readingTime(content)}
+      </span>
+
+      <p className={css(Styles.summary)}>{summarize(content)}</p>
+      <a className={css(Styles.permalink)} href={url}>Read More</a>
     </div>
   );
 };
