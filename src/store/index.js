@@ -1,27 +1,8 @@
-import { combineReducers, compose, createStore, applyMiddleware } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
-import { routerForBrowser } from 'redux-little-router';
 import thunk from 'redux-thunk';
 // import Raven from 'raven-js';
 import AppReducer from '../reducers';
-
-const routes = {
-  '/about': {
-    title: 'About',
-  },
-  '/journal/:id': {
-    title: 'Journal',
-  },
-};
-
-const {
-  reducer,
-  middleware,
-  enhancer,
-} = routerForBrowser({
-  routes,
-});
-
 
 // const logger = store => next => (action) => {
 //   console.log('dispatching', action);
@@ -46,9 +27,9 @@ const {
 // };
 
 const store = createStore(
-  combineReducers({ router: reducer, AppReducer }),
-  // compose(enhancer, applyMiddleware(middleware, thunk, logger, crashReporter)),
-  compose(enhancer, applyMiddleware(middleware, thunk)),
+  AppReducer,
+  compose(applyMiddleware(thunk)),
+  // compose(applyMiddleware(thunk, logger, crashReporter)),
   autoRehydrate(),
 );
 
