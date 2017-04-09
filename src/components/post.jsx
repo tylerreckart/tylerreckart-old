@@ -2,11 +2,12 @@ import React, { PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
 import { formatDate, readingTime, summarize } from '../utils/componentUtils';
 
-const PostSlug = (props) => {
+const Post = (props) => {
   const {
     className,
     content,
     datePublished,
+    summary,
     title,
     url,
   } = props;
@@ -31,24 +32,33 @@ const PostSlug = (props) => {
 
   return (
     <div className={className}>
-      <h2 className={css(Styles.title)}>{title}</h2>
+      <h2 className={css(Styles.title)}>
+        <a href={url}>{title}</a>
+      </h2>
 
       <span className={css(Styles.meta)}>
         {formatDate(datePublished)} {readingTime(content)}
       </span>
 
-      <p className={css(Styles.summary)}>{summarize(content)}</p>
-      <a className={css(Styles.permalink)} href={url}>Read More</a>
+      <p className={css(Styles.summary)}>
+        {!summary ? content : summarize(content)}
+      </p>
+      {!summary ? <div /> : <a className={css(Styles.permalink)} href={url}>Read More</a>}
     </div>
   );
 };
 
-PostSlug.propTypes = {
+Post.defaultProps = {
+  summary: true,
+};
+
+Post.propTypes = {
   className: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   datePublished: PropTypes.number.isRequired,
+  summary: PropTypes.bool,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };
 
-export default PostSlug;
+export default Post;

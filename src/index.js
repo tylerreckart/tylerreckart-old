@@ -1,3 +1,4 @@
+/* global document */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -17,8 +18,6 @@ const config = {
 initializeApp(config);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Blog />
-  </Provider>,
+  React.createElement(Provider, { store: store }, React.createElement(Blog, {}, null)),
   document.getElementById('root'),
 );

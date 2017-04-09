@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
-import PostSlug from './slug';
+import Post from './post';
 
 const Feed = (props) => {
   const { posts } = props;
@@ -18,7 +18,7 @@ const Feed = (props) => {
     return (
       <div>
         {posts.map(post => (
-          <PostSlug
+          <Post
             key={post.id}
             className={
               css(
@@ -27,6 +27,7 @@ const Feed = (props) => {
             }
             datePublished={post.date_published}
             content={post.content}
+            // summary={false}
             title={post.title}
             url={post.url}
           />
