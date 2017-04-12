@@ -7,7 +7,7 @@ import Feed from './components/feed';
 const Styles = StyleSheet.create({
   container: {
     fontFamily: 'Menlo, monospace',
-    fontSize: '13px',
+    fontSize: '14px',
     margin: '0 auto',
     maxWidth: '700px',
   },
@@ -27,7 +27,7 @@ export default class App extends Component {
 
     return (
       <div className={css(Styles.container)}>
-        <Header title="tyler reckart" />
+        <Header title="tylerreckart" />
         <Feed posts={posts} />
       </div>
     );
@@ -41,6 +41,11 @@ App.defaultProps = {
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
   posts: PropTypes.arrayOf(PropTypes.shape({
-    posts: PropTypes.array,
+    id: PropTypes.number.isRequired,
+    date_published: PropTypes.number.isRequired,
+    public: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired
   })),
 };

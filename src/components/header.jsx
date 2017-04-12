@@ -16,6 +16,7 @@ const Header = (props) => {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'nowrap',
+      fontSize: '12px',
       justifyContent: 'space-between',
       margin: '4em 0 4em 0',
     },

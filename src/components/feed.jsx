@@ -9,7 +9,7 @@ const Feed = (props) => {
     post: {
       marginBottom: '4em',
     },
-    last: {
+    terminal: {
       marginBottom: 0,
     },
   });
@@ -22,7 +22,7 @@ const Feed = (props) => {
             key={post.id}
             className={
               css(
-                posts[posts.length - 1] === post ? Styles.last : Styles.post
+                posts[posts.length - 1] === post ? Styles.terminal : Styles.post
               )
             }
             datePublished={post.date_published}
