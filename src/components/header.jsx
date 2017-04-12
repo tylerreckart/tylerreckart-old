@@ -8,35 +8,40 @@ const Header = (props) => {
   } = props;
 
   const Styles = StyleSheet.create({
+    anchor: {
+      color: 'inherit',
+      textDecoration: 'none',
+    },
     header: {
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'nowrap',
       justifyContent: 'space-between',
-      margin: '3em 0 3em 0',
+      margin: '4em 0 4em 0',
     },
     hyperlink: {
       float: 'left',
-      margin: '0 0 0 1.5em',
+      margin: '0 0 0 2em',
     },
     siteName: {
-      color: 'red',
+      color: 'inherit',
+      textDecoration: 'none',
     },
   });
 
   return (
     <div className={css(Styles.header)}>
-      <h1 className={css(Styles.siteName)}>
-        <a href="/journal">{title}</a>
+      <h1>
+        <a className={css(Styles.siteName)} href="/journal">{title}</a>
       </h1>
 
       <nav>
         <ul>
           <li className={css(Styles.hyperlink)}>
-            <a href="/journal">/journal</a>
+            <a className={css(Styles.anchor)} href="/journal">/journal</a>
           </li>
           <li className={css(Styles.hyperlink)}>
-            <a href="/about">/about</a>
+            <a className={css(Styles.anchor)} href="/about">/about</a>
           </li>
         </ul>
       </nav>

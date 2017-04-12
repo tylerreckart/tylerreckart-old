@@ -6,6 +6,8 @@ import Feed from './components/feed';
 
 const Styles = StyleSheet.create({
   container: {
+    fontFamily: 'Menlo, monospace',
+    fontSize: '13px',
     margin: '0 auto',
     maxWidth: '700px',
   },
@@ -25,7 +27,7 @@ export default class App extends Component {
 
     return (
       <div className={css(Styles.container)}>
-        <Header title="tylerreckart" />
+        <Header title="tyler reckart" />
         <Feed posts={posts} />
       </div>
     );
