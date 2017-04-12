@@ -22,7 +22,7 @@ const Feed = (props) => {
             key={post.id}
             className={
               css(
-                posts[posts.length - 1] === post ? Styles.last : Styles.post,
+                posts[posts.length - 1] === post ? Styles.last : Styles.post
               )
             }
             datePublished={post.date_published}
@@ -39,8 +39,19 @@ const Feed = (props) => {
   return <div />;
 };
 
+Feed.defaultProps = {
+  posts: [],
+};
+
 Feed.propTypes = {
-  posts: PropTypes.array.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    date_published: PropTypes.number.isRequired,
+    public: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired
+  })),
 };
 
 export default Feed;

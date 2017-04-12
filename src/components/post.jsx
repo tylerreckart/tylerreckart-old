@@ -28,7 +28,7 @@ const Post = (props) => {
       fontSize: '1.5em',
       fontWeight: '600',
     },
-  })
+  });
 
   return (
     <div className={className}>

@@ -19,5 +19,5 @@ initializeApp(config);
 
 ReactDOM.render(
   React.createElement(Provider, { store: store }, React.createElement(Blog, {}, null)),
-  document.getElementById('root'),
+  document.getElementById('root')
 );

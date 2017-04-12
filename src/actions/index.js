@@ -5,7 +5,7 @@ export const recievePosts = posts => ({
 
 export const getPosts = () => (
   (dispatch) => {
-    fetch(process.env.REACT_APP_DATABASE_URL + '/posts.json', {
+    fetch(`${process.env.REACT_APP_DATABASE_URL}/posts.json`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

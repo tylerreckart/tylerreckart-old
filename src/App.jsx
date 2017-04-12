@@ -32,7 +32,13 @@ export default class App extends Component {
   }
 }
 
+App.defaultProps = {
+  posts: [],
+};
+
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  posts: PropTypes.array,
+  posts: PropTypes.arrayOf(PropTypes.shape({
+    posts: PropTypes.array,
+  })),
 };

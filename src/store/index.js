@@ -30,7 +30,7 @@ const store = createStore(
   AppReducer,
   compose(applyMiddleware(thunk)),
   // compose(applyMiddleware(thunk, logger, crashReporter)),
-  autoRehydrate(),
+  autoRehydrate()
 );
 
 persistStore(store);

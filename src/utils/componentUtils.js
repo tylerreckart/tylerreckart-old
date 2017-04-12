@@ -1,9 +1,9 @@
 /**
- * 
- * 
+ *
+ *
  * @export
- * @param {any} timestamp 
- * @returns 
+ * @param {any} timestamp
+ * @returns
  */
 export function formatDate(timestamp) {
   const months = [
@@ -41,13 +41,13 @@ export function formatDate(timestamp) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
- * @param {any} string 
- * @param {any} start 
- * @param {any} end 
- * @returns 
+ * @param {any} string
+ * @param {any} start
+ * @param {any} end
+ * @returns
  */
 export function handleStringLength(string, start, end) {
   if (string.length > end) {
@@ -58,11 +58,11 @@ export function handleStringLength(string, start, end) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
- * @param {any} string 
- * @returns 
+ * @param {any} string
+ * @returns
  */
 export function readingTime(string) {
   const minutes = Math.floor(string.length / 200);
@@ -71,11 +71,11 @@ export function readingTime(string) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
- * @param {any} string 
- * @returns 
+ * @param {any} string
+ * @returns
  */
 export function summarize(string) {
   if (string.length > 350) {
