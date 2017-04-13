@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
 import { getPosts } from './actions';
+
 import Home from './pages/home';
+import Journal from './pages/journal';
 
 export default class App extends Component {
   constructor(props) {
@@ -14,7 +16,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <Home posts={this.props.posts} />
+      <Journal post={this.props.posts[0]} />
     );
   }
 }

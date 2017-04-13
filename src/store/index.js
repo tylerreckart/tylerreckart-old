@@ -1,35 +1,35 @@
 import { compose, createStore, applyMiddleware } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import thunk from 'redux-thunk';
-// import Raven from 'raven-js';
+import Raven from 'raven-js';
 import AppReducer from '../reducers';
 
-// const logger = store => next => (action) => {
-//   console.log('dispatching', action);
-//   const result = next(action);
-//   console.log('next state', store.getState());
-//   return result;
-// };
+const logger = store => next => (action) => {
+  console.log('dispatching', action);
+  const result = next(action);
+  console.log('next state', store.getState());
+  return result;
+};
 
-// const crashReporter = store => next => (action) => {
-//   try {
-//     return next(action);
-//   } catch (err) {
-//     console.error('Caught an exception!', err);
-//     Raven.captureException(err, {
-//       extra: {
-//         action,
-//         state: store.getState(),
-//       },
-//     });
-//     throw err;
-//   }
-// };
+const crashReporter = store => next => (action) => {
+  try {
+    return next(action);
+  } catch (err) {
+    console.error('Caught an exception!', err);
+    Raven.captureException(err, {
+      extra: {
+        action,
+        state: store.getState(),
+      },
+    });
+    throw err;
+  }
+};
 
 const store = createStore(
   AppReducer,
-  compose(applyMiddleware(thunk)),
-  // compose(applyMiddleware(thunk, logger, crashReporter)),
+  // compose(applyMiddleware(thunk)),
+  compose(applyMiddleware(thunk, logger, crashReporter)),
   autoRehydrate()
 );
 
