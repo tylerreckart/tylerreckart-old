@@ -1,17 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
 import { getPosts } from './actions';
-import Header from './components/header';
-import Feed from './components/feed';
-
-const Styles = StyleSheet.create({
-  container: {
-    fontFamily: 'Menlo, monospace',
-    fontSize: '14px',
-    margin: '0 auto',
-    maxWidth: '700px',
-  },
-});
+import Home from './pages/home';
 
 export default class App extends Component {
   constructor(props) {
@@ -23,13 +13,8 @@ export default class App extends Component {
   }
 
   render() {
-    const posts = this.props.posts !== undefined ? this.props.posts : [];
-
     return (
-      <div className={css(Styles.container)}>
-        <Header title="tylerreckart" />
-        <Feed posts={posts} />
-      </div>
+      <Home posts={this.props.posts} />
     );
   }
 }

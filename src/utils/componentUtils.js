@@ -65,7 +65,7 @@ export function handleStringLength(string, start, end) {
  * @returns
  */
 export function readingTime(string) {
-  const minutes = Math.floor(string.length / 200);
+  const minutes = Math.floor(string.split(' ').length / 220);
 
   return `(${minutes} minute read)`;
 }

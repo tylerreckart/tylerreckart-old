@@ -21,11 +21,11 @@ const Post = (props) => {
     permalink: {
       color: 'inherit',
       display: 'inline-block',
-      margin: '.75em 0 0 0',
       textDecoration: 'none',
     },
     readMore: {
       color: '#1B95E0',
+      margin: '1em 0 0 0',
     },
     summary: {
       lineHeight: '1.75em',
