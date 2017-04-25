@@ -26,8 +26,16 @@ const crashReporter = store => next => (action) => {
   }
 };
 
+const initialState = {
+  post: {
+    posts: [],
+    isFetching: true,
+  }
+};
+
 const store = createStore(
   AppReducer,
+  initialState,
   // compose(applyMiddleware(thunk)),
   compose(applyMiddleware(thunk, logger, crashReporter)),
   autoRehydrate()

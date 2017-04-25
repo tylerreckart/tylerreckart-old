@@ -6,18 +6,20 @@ import Home from './pages/home';
 import Journal from './pages/journal';
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-
-    const { dispatch } = props;
+  componentWillMount() {
+    const { dispatch } = this.props;
 
     dispatch(getPosts());
   }
 
   render() {
-    return (
-      <Journal post={this.props.posts[0]} />
+    const { isFetching } = this.props;
+
+    const loader = (
+      <h1>Loading...</h1>
     );
+
+    return isFetching === true ? loader : <Journal post={this.props.posts[0]} />;
   }
 }
 
