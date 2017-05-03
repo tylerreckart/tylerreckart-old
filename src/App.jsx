@@ -19,7 +19,7 @@ export default class App extends Component {
       <h1>Loading...</h1>
     );
 
-    return isFetching === true ? loader : <Journal post={this.props.posts[0]} />;
+    return isFetching === true ? loader : <Home posts={this.props.posts} />;
   }
 }
 

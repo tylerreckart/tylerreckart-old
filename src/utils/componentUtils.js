@@ -20,24 +20,13 @@ export function formatDate(timestamp) {
     'Dec',
   ];
 
-  const weekdays = [
-    'Sunday',
-    'Monday',
-    'Tueday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
-
   const date = new Date(timestamp);
 
-  const weekday = weekdays[date.getDay()];
   const month = months[date.getMonth()];
   const day = date.getUTCDate();
   const year = date.getUTCFullYear();
 
-  return `${weekday} ${month} ${day}, ${year}`;
+  return `${month} ${day}, ${year}`;
 }
 
 /**

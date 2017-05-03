@@ -14,9 +14,11 @@ const Post = (props) => {
 
   const Styles = StyleSheet.create({
     meta: {
-      color: '#777777',
+      color: '#BBBBBB',
       display: 'block',
-      margin: '1em 0 1em 0',
+      fontSize: '16px',
+      fontWeight: '600',
+      maxWidth: '650px',
     },
     permalink: {
       color: 'inherit',
@@ -28,29 +30,36 @@ const Post = (props) => {
       margin: '1em 0 0 0',
     },
     summary: {
-      lineHeight: '1.75em',
+      fontSize: '16px',
+      lineHeight: '1.5em',
+      maxWidth: '650px',
     },
     title: {
-      color: '#FF3F4A',
-      fontSize: '16px',
-      fontWeight: '600',
+      color: '#000000',
+      fontSize: '28px',
+      fontWeight: '800',
+      letterSpacing: '0.05em',
+      margin: '.5em 0',
+      maxWidth: '650px',
     },
   });
 
   return (
     <div className={className}>
-      <h2 className={css(Styles.title)}>
-        <a className={css(Styles.permalink)} href={url}>{title}</a>
-      </h2>
+      <div>
+        <span className={css(Styles.meta)}>
+          {formatDate(datePublished)}
+        </span>
 
-      <span className={css(Styles.meta)}>
-        {formatDate(datePublished)} {readingTime(content)}
-      </span>
+        <h2 className={css(Styles.title)}>
+          <a className={css(Styles.permalink)} href={url}>{title}</a>
+        </h2>
 
-      <p className={css(Styles.summary)}>
-        {!summary ? content : summarize(content)}
-      </p>
-      {!summary ? <div /> : <a className={css(Styles.permalink, Styles.readMore)} href={url}>Read More</a>}
+        <p className={css(Styles.summary)}>
+          {!summary ? content : summarize(content)}
+        </p>
+        {!summary ? <div /> : <a className={css(Styles.permalink, Styles.readMore)} href={url}>Read More</a>}
+      </div>
     </div>
   );
 };

@@ -8,10 +8,9 @@ import Footer from '../components/footer';
 
 const Styles = StyleSheet.create({
   container: {
-    fontFamily: 'Menlo, monospace',
+    fontFamily: '-apple-system , BlinkMacSystemFont, "Segoe UI" ,Roboto, "Helvetica Neue" ,Helvetica, sans-serif',
     fontSize: '14px',
     margin: '0 auto',
-    maxWidth: '700px',
   },
 });
 
