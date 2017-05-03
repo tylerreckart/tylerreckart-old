@@ -1,7 +1,16 @@
 import React, { PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
-import { Converter } from 'showdown';
+import showdown, { Converter } from 'showdown';
 import { formatDate, readingTime, summarize } from '../utils/componentUtils';
+
+const globalSelectorHandler = (selector, _, generateSubtreeStyles) => {
+  if (selector[0] !== '*') {
+    return null;
+  }
+  return generateSubtreeStyles(selector.slice(1));
+};
+const globalExtension = { selectorHandler: globalSelectorHandler };
+const extended = StyleSheet.extend([globalExtension]);
 
 const Post = (props) => {
   const {
@@ -13,13 +22,33 @@ const Post = (props) => {
     url,
   } = props;
 
-  const Styles = StyleSheet.create({
+  const Styles = extended.StyleSheet.create({
+    globals: {
+      '*img': {
+        display: 'block',
+        width: '100%',
+        margin: '1em 0',
+      },
+      '*code': {
+        color: '#CC0011',
+        border: '1px solid #DCDEDE',
+        fontFamily: 'Menlo, monospace',
+        fontSize: '12px',
+        backgroundColor: '#f0f0f0',
+        padding: '.5em',
+        margin: '1em 0',
+        borderRadius: '2px',
+      },
+      '*strong': {
+        fontWeight: '800',
+      }
+    },
     meta: {
       color: '#BBBBBB',
       display: 'block',
       fontSize: '16px',
-      fontWeight: '600',
-      margin: '.75em 0',
+      fontWeight: '500',
+      margin: '1em 0',
       maxWidth: '650px',
     },
     permalink: {
@@ -45,6 +74,7 @@ const Post = (props) => {
     },
   });
 
+  showdown.setFlavor('github');
   const body = new Converter().makeHtml(content);
 
   return (
@@ -59,7 +89,7 @@ const Post = (props) => {
         </span>
 
         <p className={css(Styles.summary)}>
-          {!summary ? <div dangerouslySetInnerHTML={{ __html: body }} /> : summarize(content)}
+          {!summary ? <div className={extended.css(Styles.globals)} dangerouslySetInnerHTML={{ __html: body }} /> : summarize(content)}
         </p>
         {!summary ? <div /> : <a className={css(Styles.permalink, Styles.readMore)} href={url}>Read More</a>}
       </div>
