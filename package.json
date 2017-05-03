@@ -18,7 +18,8 @@
     "redux-devtools": "^3.3.2",
     "redux-little-router": "^13.1.0",
     "redux-persist": "^4.6.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "showdown": "^1.6.4"
   },
   "devDependencies": {
     "autoprefixer": "6.7.2",
