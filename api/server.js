@@ -4,6 +4,41 @@ var express = require('express');
 var graphqlHTTP = require('express-graphql');
 var graphql = require('graphql');
 
+// This is what we want to build our query around:
+// Return a single post with a given id:
+// {
+//   post(id: 0) {
+//     body
+//     date
+//     id
+//     preview
+//     public
+//     title
+//   }
+// }
+// Return all posts
+// {
+//   posts {
+    // body
+    // date
+    // id
+    // preview
+    // public
+    // title
+//   }
+// }
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/tylerreckart');
+var POST = mongoose.model('Post', {
+    body: String,
+    date: Date,
+    id: mongoose.Schema.Types.ObjectId,
+    preview: String,
+    public: Boolean,
+    title: String,
+});
+
 var Posts = [
     {
         body: 'lorem ipsum',
@@ -35,6 +70,7 @@ var schema = graphql.buildSchema(`
     }
     type Query {
         post(id: Int!): Post
+        posts: [Post]
     }
 `);
 
@@ -46,6 +82,14 @@ var root = {
                 return Posts[i];
             };
         }
+    },
+    posts: () => {
+        return new Promise((resolve, reject) => {
+            POST.find((err, posts) => {
+                if (err) reject(err);
+                else resolve(posts);
+            });
+        });;
     },
 };
 
