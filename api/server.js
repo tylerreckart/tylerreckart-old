@@ -1,16 +1,51 @@
+'use strict';
+
 var express = require('express');
 var graphqlHTTP = require('express-graphql');
 var graphql = require('graphql');
 
+var Posts = [
+    {
+        body: 'lorem ipsum',
+        date: Date.now(),
+        id: 0,
+        preview: 'lorem ipsum',
+        public: true,
+        title: 'Lorem Ipsum',
+     },
+     {
+        body: 'lorem tipsum',
+        date: (Date.now() / 2),
+        id: 1,
+        preview: 'lorem tipsum',
+        public: true,
+        title: 'Lorem Tipsum',
+     },
+];
+
+// Construct a schema, using GraphQL schema language
 var schema = graphql.buildSchema(`
+    type Post {
+        body: String!
+        date: String!
+        id: ID!
+        preview: String!
+        public: Boolean!
+        title: String!
+    }
     type Query {
-        post: String
+        post(id: Int!): Post
     }
 `);
 
+// The root provides a resolver function for each API endpoint
 var root = {
-    hello: () => {
-        return 'Hello, World!';
+    post: (args) => {
+        for (let i = 0; i < Posts.length; i++) {
+            if (Posts[i].id === args.id) {
+                return Posts[i];
+            };
+        }
     },
 };
 
@@ -21,4 +56,27 @@ app.use('/api', graphqlHTTP({
     graphiql: true,
 }));
 app.listen(4000);
-console.log('Running GraphQL API serverat localhost:4000/api');
+
+console.log(`
+                                     )
+                            )      ((     (
+                           (        ))     )
+                    )       )      //     (
+               _   (        __    (     ~->>
+        ,-----' |__,_~~___<'__')-~__--__-~->> <
+        | //  : | -__   ~__ o)____)),__ - '> >-  >
+        | //  : |- \_ \ -\_\ -\ \ \ ~\_  \ ->> - ,  >>
+        | //  : |_~_\ -\__\ \~'\ \ \, \__ . -<-  >>
+        '-----._| '  -__'-- - ~~ -- ' --~> >
+         _/___\_    //)_'//  | ||]
+   _____[_______]_[~~-_ (.L_/  ||
+  [____________________]' '\_,/'/
+    ||| /          |||  ,___,'./
+    ||| \          |||,'______|
+    ||| /          /|| I==||
+    ||| \       __/_||  __||__
+-----||-/------'-._/||-o--o---o---
+  ~~~~~'
+  
+Running GraphQL API server at localhost:4000/api
+`);
