@@ -24,6 +24,9 @@ const Post = (props) => {
 
   const Styles = extended.StyleSheet.create({
     globals: {
+      '*p': {
+        fontWeight: '300',
+      },
       '*img': {
         display: 'block',
         width: '100%',
@@ -46,9 +49,10 @@ const Post = (props) => {
       color: '#BBBBBB',
       display: 'block',
       fontSize: '16px',
-      fontWeight: '500',
+      fontWeight: '200',
       margin: '1em 0',
       maxWidth: '650px',
+      textAlign: 'center',
     },
     permalink: {
       color: 'inherit',
@@ -65,11 +69,12 @@ const Post = (props) => {
       maxWidth: '650px',
     },
     title: {
-      color: '#000000',
-      fontSize: '28px',
-      fontWeight: '800',
+      color: '#CC0011',
+      fontSize: '26px',
+      fontWeight: '200',
       letterSpacing: '0.05em',
       maxWidth: '650px',
+      textAlign: 'center',
     },
   });
 
