@@ -1,5 +1,6 @@
 'use strict';
 
+require('dotenv').config();
 var express = require('express');
 var graphqlHTTP = require('express-graphql');
 var graphql = require('graphql');
@@ -29,7 +30,16 @@ var graphql = require('graphql');
 // }
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/tylerreckart');
+// Set up the default mongoose connection
+console.log(`Database URL: ${process.env.REACT_APP_DB_URL}`)
+mongoose.connect(process.env.REACT_APP_DB_URL);
+
+//Get the default connection
+const db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 var POST = mongoose.model('Post', {
     body: String,
     date: Date,
@@ -124,3 +134,5 @@ console.log(`
   
 Running GraphQL API server at localhost:4000/api
 `);
+
+console.log(db);

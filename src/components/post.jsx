@@ -31,11 +31,10 @@ const Post = (props) => {
       },
       '*code': {
         color: '#CC0011',
-        border: '1px solid #DCDEDE',
         fontFamily: 'Menlo, monospace',
         fontSize: '12px',
         backgroundColor: '#f0f0f0',
-        padding: '.5em',
+        padding: '.75em',
         margin: '1em 0',
         borderRadius: '2px',
       },
@@ -74,8 +73,13 @@ const Post = (props) => {
     },
   });
 
-  showdown.setFlavor('github');
-  const body = new Converter().makeHtml(content);
+  function convertNewLines(str) {
+    var $str = str; 
+    $str = $str.replace(/\\n/g, '<br />');
+    return $str;
+  };
+
+  const body = new Converter().makeHtml(convertNewLines(content));
 
   return (
     <div className={className}>
