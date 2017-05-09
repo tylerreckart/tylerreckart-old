@@ -73,3 +73,16 @@ export function summarize(string) {
 
   return string;
 }
+
+import { StyleSheet } from 'aphrodite';
+
+const globalSelectorHandler = (selector, _, generateSubtreeStyles) => {
+  if (selector[0] !== '*') {
+    return null;
+  }
+  return generateSubtreeStyles(selector.slice(1));
+};
+
+const globalExtension = { selectorHandler: globalSelectorHandler };
+
+export const extended = StyleSheet.extend([globalExtension]);

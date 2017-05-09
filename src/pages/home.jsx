@@ -19,10 +19,10 @@ const Home = (props) => {
 
   return (
     <div className={css(Styles.container)}>
-      {/*<Header title="tyler reckart" />*/}
+      <Header title="Tyler Reckart" />
       <Feed posts={posts} />
-      {/*<Pagination />*/}
-      {/*<Footer />*/}
+      <Pagination />
+      <Footer />
     </div>
   );
 };

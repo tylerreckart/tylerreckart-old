@@ -1,16 +1,7 @@
 import React, { PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
 import showdown, { Converter } from 'showdown';
-import { formatDate, readingTime, summarize } from '../utils/componentUtils';
-
-const globalSelectorHandler = (selector, _, generateSubtreeStyles) => {
-  if (selector[0] !== '*') {
-    return null;
-  }
-  return generateSubtreeStyles(selector.slice(1));
-};
-const globalExtension = { selectorHandler: globalSelectorHandler };
-const extended = StyleSheet.extend([globalExtension]);
+import { extended, formatDate, readingTime, summarize } from '../utils/componentUtils';
 
 const Post = (props) => {
   const {
@@ -32,27 +23,17 @@ const Post = (props) => {
         width: '100%',
         margin: '1em 0',
       },
-      '*code': {
-        color: '#CC0011',
-        fontFamily: 'Menlo, monospace',
-        fontSize: '12px',
-        backgroundColor: '#f0f0f0',
-        padding: '.75em',
-        margin: '1em 0',
-        borderRadius: '2px',
-      },
       '*strong': {
         fontWeight: '800',
       }
     },
     meta: {
-      color: '#BBBBBB',
+      color: '#74808E',
       display: 'block',
-      fontSize: '16px',
+      fontSize: '14px',
       fontWeight: '200',
-      margin: '1em 0',
+      margin: '1.25em 0',
       maxWidth: '650px',
-      textAlign: 'center',
     },
     permalink: {
       color: 'inherit',
@@ -69,12 +50,11 @@ const Post = (props) => {
       maxWidth: '650px',
     },
     title: {
-      color: '#CC0011',
-      fontSize: '26px',
+      color: '#414EF9',
+      fontSize: '24px',
       fontWeight: '200',
       letterSpacing: '0.05em',
       maxWidth: '650px',
-      textAlign: 'center',
     },
   });
 

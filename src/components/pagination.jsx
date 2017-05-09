@@ -5,10 +5,13 @@ const Styles = StyleSheet.create({
   container: {
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '4em 0 0 0'
+    margin: '4em auto',
+    maxWidth: '650px',
+    fontSize: '12px',
+    fontWeight: '300',
   },
   inactive: {
-    color: '#777777',
+    color: '#74808E',
     textDecoration: 'none',
   }
 });

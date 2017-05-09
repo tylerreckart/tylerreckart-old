@@ -46,11 +46,3 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
-.react-root {
-  align-items: 'center';
-  flex: 1;
-  height: 100%;
-  justify-content: 'center';
-  width: 100%;
-}
