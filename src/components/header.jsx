@@ -32,9 +32,7 @@ const Header = (props) => {
       color: '#000000',
       fontWeight: '600',
     },
-    siteName: {
-      fontSize: '12px',
-      color: 'inherit',
+    siteName: {      color: 'inherit',
       textDecoration: 'none',
       fontWeight: '600',
     },

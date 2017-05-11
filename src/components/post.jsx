@@ -3,6 +3,8 @@ import { css, StyleSheet } from 'aphrodite';
 import showdown, { Converter } from 'showdown';
 import { extended, formatDate, readingTime, summarize } from '../utils/componentUtils';
 
+import NewsletterSignupForm from './newsletter';
+
 const Post = (props) => {
   const {
     className,
@@ -82,6 +84,7 @@ const Post = (props) => {
         </p>
         {!summary ? <div /> : <a className={css(Styles.permalink, Styles.readMore)} href={url}>Read More</a>}
       </div>
+      <NewsletterSignupForm />
     </div>
   );
 };
