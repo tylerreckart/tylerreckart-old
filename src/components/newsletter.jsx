@@ -6,8 +6,13 @@ const NewsletterSignupForm = () => {
   const Styles = StyleSheet.create({
     globals: {
       '*a': {
+        borderBottom: '1px solid rgba(0,0,0,0)',
         color: '#414EF9',
         textDecoration: 'none',
+        ':hover': {
+          'color': '#0011F8',
+          borderBottom: '1px solid #0011F8'
+        }
       },
     },
     container: {
@@ -27,22 +32,28 @@ const NewsletterSignupForm = () => {
       margin: '0 .5em 0 0',
       outline: 'none',
       padding: '1em',
-      width: '476px',
+      width: '450px',
       ':focus': {
           border: '1px solid #414EF9',
+          boxShadow: '0 0 2px rgba(65,78,249,.20)',
       },
       '::placeholder': {
           color: '#74808E',
       }
     },
     submit: {
+      cursor: 'pointer',
       backgroundColor: '#414EF9',
       border: 'none',
       borderRadius: '6px',
       color: '#ffffff',
       fontSize: '14px',
       fontWeight: '400',
-      padding: '1em',
+      padding: '1em 1.5em',
+      ':hover': {
+          backgroundColor: '#0011F8',
+          boxShadow: '0 0 2px rgba(65,78,249,.20)',
+      }
     },
     masthead: {
       fontSize: '16px',
