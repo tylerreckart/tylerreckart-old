@@ -18,8 +18,9 @@ const Header = (props) => {
       flexWrap: 'nowrap',
       fontSize: '12px',
       justifyContent: 'space-between',
-      position: 'absolute',
+      position: 'fixed',
       width: '100%',
+      top: '0',
     },
     hyperlink: {
       color: '#74808E',
@@ -46,6 +47,7 @@ const Header = (props) => {
       borderRadius: '50%',
     },
     profileImg: {
+      cursor: 'pointer',
       width: '32px',
       height: '32px',
       background: `url('https://pbs.twimg.com/profile_images/737021651683008512/5HO2-2qq.jpg')`,
@@ -73,6 +75,30 @@ const Header = (props) => {
     nav: {
       backgroundColor: 'red',
       padding: '1em',
+    },
+    tooltip: {
+      backgroundColor: '#000000',
+      color: '#ffffff',
+      padding: '.75em',
+      borderRadius: '6px',
+      top: '-12px',
+      position: 'absolute',
+      left: '7px',
+      fontSize: '12px',
+    },
+    triangle: {
+      display: 'block',
+      width: '0',
+      height: '0',
+      borderLeft: '5px solid transparent',
+      borderRight: '5px solid transparent',
+      borderBottom: '5px solid black',
+      transform: 'rotate(-90deg)',
+    },
+    tip: {
+      position: 'relative',
+      top: '-19px',
+      left: '36px',
     }
   });
 
@@ -81,6 +107,10 @@ const Header = (props) => {
       <div className={css(Styles.header)}>
         <div className={css(Styles.itemWrapper)}>
           <div className={css(Styles.profileImg)} />
+          {/*<div className={css(Styles.tip)}>
+            <span className={css(Styles.triangle)} />
+            <span className={css(Styles.tooltip)}>Home</span>
+          </div>*/}
         </div>
 
         <div className={css(Styles.itemWrapper)}>

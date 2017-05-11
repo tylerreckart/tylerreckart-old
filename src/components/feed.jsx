@@ -7,10 +7,15 @@ const Feed = (props) => {
 
   const Styles = StyleSheet.create({
     container: {
+      marginTop: '75px',
+    },
+    feed: {
       alignItems: 'center',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
+      maxWidth: '800px',
+      margin: '0 auto',
     },
     post: {
       display: 'flex',
@@ -31,22 +36,24 @@ const Feed = (props) => {
   if (posts.length > 0) {
     return (
       <div className={css(Styles.container)}>
-        {posts.map(post => (
-          <Post
-            key={post.id}
-            className={
-              css(
-                posts[posts.length - 1] === post ? Styles.terminal : Styles.leading,
-                Styles.post
-              )
-            }
-            datePublished={post.date_published}
-            content={post.content}
-            summary={false}
-            title={post.title}
-            url={post.url}
-          />
-        ))}
+        <div className={css(Styles.feed)}>
+          {posts.map(post => (
+            <Post
+              key={post.id}
+              className={
+                css(
+                  posts[posts.length - 1] === post ? Styles.terminal : Styles.leading,
+                  Styles.post
+                )
+              }
+              datePublished={post.date_published}
+              content={post.content}
+              summary={false}
+              title={post.title}
+              url={post.url}
+            />
+          ))}
+        </div>
       </div>
     );
   }

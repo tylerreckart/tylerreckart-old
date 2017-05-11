@@ -21,7 +21,7 @@ const NewsletterSignupForm = () => {
       borderRadius: '6px',
       boxShadow: '0 0 2px rgba(0,0,0,.05)',
       margin: '3em 0 0 0',
-      maxWidth: '608px',
+      maxWidth: '650px',
       padding: '1.5em',
     },
     input: {
@@ -32,7 +32,7 @@ const NewsletterSignupForm = () => {
       margin: '0 .5em 0 0',
       outline: 'none',
       padding: '1em',
-      width: '450px',
+      width: '504px',
       ':focus': {
           border: '1px solid #414EF9',
           boxShadow: '0 0 2px rgba(65,78,249,.20)',
