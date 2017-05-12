@@ -22,6 +22,8 @@ const NewsletterSignupForm = () => {
       boxShadow: '0 0 2px rgba(0,0,0,.05)',
       margin: '3em 0 0 0',
       maxWidth: '650px',
+    },
+    content: {
       padding: '1.5em',
     },
     input: {
@@ -32,7 +34,7 @@ const NewsletterSignupForm = () => {
       margin: '0 .5em 0 0',
       outline: 'none',
       padding: '1em',
-      width: '504px',
+      width: '462px',
       ':focus': {
           border: '1px solid #414EF9',
           boxShadow: '0 0 2px rgba(65,78,249,.20)',
@@ -72,12 +74,14 @@ const NewsletterSignupForm = () => {
 
   return (
     <div className={extended.css(Styles.container, Styles.globals)}>
-      <p className={css(Styles.masthead)}>Liked the article? Subscribe below to get an email when new articles come out! Also, follow <a href="https://twitter.com/tylerreckart" target="_blank">@tylerreckart</a> on Twitter.</p>
-      <em className={css(Styles.disclaimer)}>One click unsubscribe, any time. <a href="#">Learn more</a>.</em>
-      <form>
-        <input className={css(Styles.input)} type="email" placeholder="example@tylerreckart.com" />
-        <input className={css(Styles.submit)} type="submit" value="Subscribe" />
-      </form>
+      <div className={css(Styles.content)}>
+        <p className={css(Styles.masthead)}>Liked the article? Subscribe below to get an email when new articles come out! Also, follow <a href="https://twitter.com/tylerreckart" target="_blank">@tylerreckart</a> on Twitter.</p>
+        <em className={css(Styles.disclaimer)}>One click unsubscribe, any time. <a href="#">Learn more</a>.</em>
+        <form>
+          <input className={css(Styles.input)} type="email" placeholder="example@tylerreckart.com" />
+          <input className={css(Styles.submit)} type="submit" value="Subscribe" />
+        </form>
+      </div>
     </div>
   );
 };
