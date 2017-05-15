@@ -7,7 +7,7 @@ const Feed = (props) => {
 
   const Styles = StyleSheet.create({
     container: {
-      marginTop: '75px',
+      marginTop: '100px',
     },
     feed: {
       alignItems: 'center',
