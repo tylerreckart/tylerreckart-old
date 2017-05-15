@@ -1,39 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
 
-export default class Menu extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isMenuActive: false,
-    };
-  }
-
-  toggleMenu() {
-    if (this.state.isMenuActive === false) {
-      this.setState({
-        isMenuActive: true,
-      });
-    } else if (this.state.isMenuActive === true) {
-      this.setState({
-        isMenuActive: false,
-      });
-    }
-
-    return;
-  }
-
-  render() {
-    const isMenuActive = this.state.isMenuActive;
-    return (
-      <div>
-        <div className={css(Styles.menu, isMenuActive === true ? Styles.menuActive : Styles.menuHidden)} />
-        <div className={css(Styles.overlay, isMenuActive === true ? Styles.overlayActive : Styles.overlayHidden)} />
-      </div>
-    );
-  }
-}
+const Menu = (props) => (
+  <div>
+    <div className={css(Styles.menu, props.isMenuActive === true ? Styles.menuActive : Styles.menuHidden)} />
+    <div className={css(Styles.overlay, props.isMenuActive === true ? Styles.overlayActive : Styles.overlayHidden)} />
+  </div>
+);
 
 const Styles = StyleSheet.create({
     menu: {
@@ -43,8 +16,8 @@ const Styles = StyleSheet.create({
       height: '100%',
       position: 'fixed',
       top: 0,
-      transition: 'all 300ms ease',
-      width: '400px',
+      transition: 'all 400ms ease',
+      width: '300px',
       zIndex: 10,
     },
     menuActive: {
@@ -53,7 +26,7 @@ const Styles = StyleSheet.create({
     },
     menuHidden: {
       opacity: 0,
-      right: '-400px',
+      right: '-300px',
     },
     overlay: {
       backgroundColor: '#000000',
@@ -61,9 +34,10 @@ const Styles = StyleSheet.create({
       left: 0,
       position: 'fixed',
       top: 0,
-      transition: 'opacity 300ms ease',
+      transition: 'opacity 400ms ease',
       width: '100%',
       zIndex: 9,
+      overflow: 'hidden',
     },
     overlayActive: {
       opacity: .2,
@@ -72,3 +46,5 @@ const Styles = StyleSheet.create({
       opacity: 0,
     },
 });
+
+export default Menu;

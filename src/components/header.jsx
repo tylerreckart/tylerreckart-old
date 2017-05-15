@@ -5,6 +5,28 @@ import { css, StyleSheet } from 'aphrodite';
 import Menu from './menu';
 
 class Header extends Component {
+    constructor(props) {
+    super(props);
+
+    this.state = {
+      isMenuActive: false,
+    };
+  }
+
+  toggleMenu() {
+    if (this.state.isMenuActive === false) {
+      this.setState({
+        isMenuActive: true,
+      });
+    } else if (this.state.isMenuActive === true) {
+      this.setState({
+        isMenuActive: false,
+      });
+    }
+
+    return;
+  }
+
   render() {
     const {
       title,
@@ -13,12 +35,8 @@ class Header extends Component {
     return (
       <div>
         <div className={css(Styles.header)}>
-          <div className={css(Styles.itemWrapper)}>
-            <div className={css(Styles.profileImg)} />
-          </div>
-
-          <div className={css(Styles.itemWrapper)}>
-            <div className={css(Styles.pullOutMenuTrigger)} onClick={() => this.refs.pullOutMenu.toggleMenu()}>
+          <div className={css(Styles.menuItemWrapper)}>
+            <div className={css(Styles.pullOutMenuTrigger)} onClick={() => this.toggleMenu()}>
               <div>
                 <span className={css(Styles.crossBar, Styles.topBar)} />
                 <span className={css(Styles.crossBar, Styles.middleBar)}/>
@@ -26,9 +44,13 @@ class Header extends Component {
               </div>
             </div>
           </div>
-        </div>
 
-        <Menu ref="pullOutMenu" />
+          <Menu isMenuActive={this.state.isMenuActive} />
+
+          <div className={css(Styles.itemWrapper)}>
+            <div className={css(Styles.profileImg)} />
+          </div>
+        </div>
       </div>
     );
   }
@@ -41,7 +63,7 @@ const Styles = StyleSheet.create({
     },
     header: {
       display: 'flex',
-      flexDirection: 'row',
+      flexDirection: 'row-reverse',
       flexWrap: 'nowrap',
       fontSize: '12px',
       justifyContent: 'space-between',
@@ -87,7 +109,12 @@ const Styles = StyleSheet.create({
     itemWrapper: {
       padding: '1.5em',
       position: 'relative',
-      zIndex: '100',
+      zIndex: '0',
+    },
+    menuItemWrapper: {
+      padding: '1.5em',
+      position: 'relative',
+      zIndex: 100,
     },
     crossBar: {
       display: 'block',

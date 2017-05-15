@@ -19,6 +19,7 @@ const Post = (props) => {
     globals: {
       '*p': {
         fontWeight: '300',
+        margin: '0 0 1em 0',
       },
       '*img': {
         display: 'block',
@@ -27,7 +28,18 @@ const Post = (props) => {
       },
       '*strong': {
         fontWeight: '800',
-      }
+      },
+      '*pre': {
+        fontFamily: 'monospace',
+        lineHeight: '1.25em',
+        padding: '1em',
+        borderRadius: '3px',
+        overflow: 'hidden',
+        fontSize: '14px',
+        margin: '2em 0',
+        backgroundColor: '#F0F2F4',
+        fontWeight: 300,
+      },
     },
     meta: {
       color: '#74808E',
@@ -79,9 +91,9 @@ const Post = (props) => {
           {formatDate(datePublished)} {readingTime(content)}
         </span>
 
-        <p className={css(Styles.summary)}>
+        <div className={css(Styles.summary)}>
           {!summary ? <div className={extended.css(Styles.globals)} dangerouslySetInnerHTML={{ __html: body }} /> : summarize(content)}
-        </p>
+        </div>
         {!summary ? <div /> : <a className={css(Styles.permalink, Styles.readMore)} href={url}>Read More</a>}
       </div>
       <NewsletterSignupForm />

@@ -20,7 +20,7 @@ const NewsletterSignupForm = () => {
       border: '1px solid #E6E8EB',
       borderRadius: '6px',
       boxShadow: '0 0 2px rgba(0,0,0,.05)',
-      margin: '3em 0 0 0',
+      margin: '1em 0 0 0',
       maxWidth: '650px',
     },
     content: {
