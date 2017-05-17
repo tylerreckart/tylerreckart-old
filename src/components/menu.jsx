@@ -41,9 +41,11 @@ const Styles = StyleSheet.create({
     },
     overlayActive: {
       opacity: .2,
+      display: 'block',
     },
     overlayHidden: {
       opacity: 0,
+      display: 'none',
     },
 });
 

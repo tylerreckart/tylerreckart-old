@@ -72,15 +72,38 @@ const NewsletterSignupForm = () => {
     },
   });
 
+  const signup = (email) => {
+    const body = {
+      "email_address": email,
+      "status": "pending",
+    };
+
+    const config = {
+      method: 'POST',
+      user: `anystring:${process.env.REACT_APP_MAILCHIMP_API_KEY}`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    };
+
+    return fetch(process.env.REACT_APP_MAILCHIMP_API_URL, config)
+    .then(response => response.json())
+    .then(response => alert(JSON.stringify(response)))
+    .catch(error => console.error(error))
+    .done();
+  };
+
+  console.log(process.env);
+
   return (
-    <div className={extended.css(Styles.container, Styles.globals)}>
+    <div className={extended.css(Styles.container, Styles.globals)} action="//tylerreckart.us15.list-manage.com/subscribe/post?u=f93b21394164ca036eb1b96d7&amp;id=8b9fc4931a" method="post">
       <div className={css(Styles.content)}>
         <p className={css(Styles.masthead)}>Liked the article? Subscribe below to get an email when new articles come out! Also, follow <a href="https://twitter.com/tylerreckart" target="_blank">@tylerreckart</a> on Twitter.</p>
         <em className={css(Styles.disclaimer)}>One click unsubscribe, any time. <a href="#">Learn more</a>.</em>
-        <form>
-          <input className={css(Styles.input)} type="email" placeholder="example@tylerreckart.com" />
-          <input className={css(Styles.submit)} type="submit" value="Subscribe" />
-        </form>
+        
+        <input className={css(Styles.input)} type="email" placeholder="example@tylerreckart.com" />
+        <input className={css(Styles.submit)} type="submit" value="Subscribe" onClick={() => signup('tyler.reckart@gmail.com')} />
       </div>
     </div>
   );
