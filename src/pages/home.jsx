@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
 
-import Header from '../components/header';
 import Feed from '../components/feed';
 import Pagination from '../components/pagination';
-import Footer from '../components/footer';
 
 const Styles = StyleSheet.create({
   container: {
@@ -19,10 +17,8 @@ const Home = (props) => {
 
   return (
     <div className={css(Styles.container)}>
-      <Header title="Tyler Reckart" />
       <Feed posts={posts} />
-      <Pagination />
-      <Footer />
+      {/*<Pagination />*/}
     </div>
   );
 };

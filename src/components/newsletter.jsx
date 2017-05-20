@@ -4,15 +4,13 @@ import { extended } from '../utils/componentUtils';
 
 const NewsletterSignupForm = () => {
   const Styles = StyleSheet.create({
-    globals: {
-      '*a': {
-        borderBottom: '1px solid rgba(0,0,0,0)',
-        color: '#414EF9',
-        textDecoration: 'none',
-        ':hover': {
-          'color': '#0011F8',
-          borderBottom: '1px solid #0011F8'
-        }
+    link: {
+      borderBottom: '1px solid rgba(0,0,0,0)',
+      color: '#414EF9',
+      textDecoration: 'none',
+      ':hover': {
+        color: '#0011F8',
+        borderBottom: '1px solid #0011F8'
       },
     },
     container: {
@@ -94,13 +92,11 @@ const NewsletterSignupForm = () => {
     .done();
   };
 
-  console.log(process.env);
-
   return (
     <div className={extended.css(Styles.container, Styles.globals)} action="//tylerreckart.us15.list-manage.com/subscribe/post?u=f93b21394164ca036eb1b96d7&amp;id=8b9fc4931a" method="post">
       <div className={css(Styles.content)}>
-        <p className={css(Styles.masthead)}>Liked the article? Subscribe below to get an email when new articles come out! Also, follow <a href="https://twitter.com/tylerreckart" target="_blank">@tylerreckart</a> on Twitter.</p>
-        <em className={css(Styles.disclaimer)}>One click unsubscribe, any time. <a href="#">Learn more</a>.</em>
+        <p className={css(Styles.masthead)}>Liked the article? Subscribe below to get an email when new articles come out! Also, follow <a className={css(Styles.link)} href="https://twitter.com/tylerreckart" target="_blank">@tylerreckart</a> on Twitter.</p>
+        <em className={css(Styles.disclaimer)}>One click unsubscribe, any time.</em>
         
         <input className={css(Styles.input)} type="email" placeholder="example@tylerreckart.com" />
         <input className={css(Styles.submit)} type="submit" value="Subscribe" onClick={() => signup('tyler.reckart@gmail.com')} />

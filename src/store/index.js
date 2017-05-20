@@ -1,8 +1,10 @@
-import { compose, createStore, applyMiddleware } from 'redux';
+import { combineReducers, compose, createStore, applyMiddleware } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import thunk from 'redux-thunk';
 import Raven from 'raven-js';
-import AppReducer from '../reducers';
+import { routerForBrowser, initializeCurrentLocation } from 'redux-little-router';
+
+import post from '../reducers/posts';
 
 const logger = store => next => (action) => {
   console.log('dispatching', action);
@@ -26,6 +28,30 @@ const crashReporter = store => next => (action) => {
   }
 };
 
+const routes = {
+  '/': {
+    title: 'Tyler Reckart'
+  },
+  '/about': {
+    title: 'Tyler Reckart: About'
+  },
+  '/journal': {
+    title: 'Tyler Reckart: Journal',
+    '/:post': {
+      title: ''
+    }
+  },
+};
+
+const {
+  reducer,
+  middleware,
+  enhancer,
+} = routerForBrowser({
+  // The configrued routes. **Required**
+  routes,
+});
+
 const initialState = {
   post: {
     posts: [],
@@ -34,13 +60,18 @@ const initialState = {
 };
 
 const store = createStore(
-  AppReducer,
+  combineReducers({ router: reducer, post}),
   initialState,
-  // compose(applyMiddleware(thunk)),
-  compose(applyMiddleware(thunk, logger, crashReporter)),
+  // compose(enhancer, applyMiddleware(thunk)),
+  compose(enhancer, applyMiddleware(thunk, logger, crashReporter)),
   autoRehydrate()
 );
 
 persistStore(store);
+
+const initialLocation = store.getState().router;
+if (initialLocation) {
+  store.dispatch(initializeCurrentLocation(initialLocation));
+}
 
 export default store;

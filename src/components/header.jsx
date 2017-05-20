@@ -48,7 +48,9 @@ class Header extends Component {
           <Menu isMenuActive={isMenuActive} />
 
           <div className={css(Styles.itemWrapper)}>
-            <div className={css(Styles.profileImg)} />
+            <a href="/">
+              <div className={css(Styles.profileImg)} />
+            </a>
           </div>
         </div>
       </div>
@@ -86,9 +88,5 @@ const Styles = StyleSheet.create({
       zIndex: 100,
     },
   });
-
-Header.propTypes = {
-  title: PropTypes.string.isRequired,
-};
 
 export default connect()(Header);

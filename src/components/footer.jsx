@@ -9,7 +9,7 @@ const Styles = StyleSheet.create({
     lineHeight: '2em',
     textAlign: 'center',
     maxWidth: '650px',
-    margin: '0 auto 4em',
+    margin: '4em auto',
     fontWeight: '300',
   },
   hyperlink: {
