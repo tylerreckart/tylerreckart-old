@@ -1,14 +1,45 @@
 import React from 'react';
 import { css, StyleSheet } from 'aphrodite';
 
-import Header from '../components/header';
-import Post from '../components/post';
-import Footer from '../components/footer';
+import Single from '../components/single';
 
 const About = () => {
+    const Styles = StyleSheet.create({
+    container: {
+      marginTop: '100px',
+    },
+    contentWrapper: {
+      alignItems: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      maxWidth: '800px',
+      margin: '0 auto',
+    },
+    post: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      maxWidth: '900px',
+    },
+    leading: {
+      marginBottom: '4em',
+    },
+    terminal: {
+      marginBottom: 0,
+    },
+  });
+
+
   return (
-    <div>
-      <h1>Hello, World</h1>
+    <div className={css(Styles.container)}>
+      <div className={css(Styles.contentWrapper)}>
+        <Single
+          title="About"
+        />
+      </div>
     </div>
   );
 };

@@ -1,14 +1,14 @@
 export const routes = {
   '/': {
-    title: 'Tyler Reckart'
-  },
-  '/about': {
-    title: 'Tyler Reckart: About'
-  },
-  '/journal': {
-    title: 'Tyler Reckart: Journal',
-    '/:post': {
-      title: ''
-    }
-  },
+    title: 'Home',
+    '/about': {
+      title: 'About'
+    },
+    '/journal': {
+      title: 'Journal', 
+      '/:post': {
+        title: 'Entry'
+      }
+    },
+  }
 };

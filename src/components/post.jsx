@@ -84,7 +84,8 @@ const Post = (props) => {
     <div className={className}>
       <div>
         <h2 className={css(Styles.title)}>
-          <a className={css(Styles.permalink)} href={url}>{title}</a>
+          {title}
+          {/*<a className={css(Styles.permalink)} href={url}>{title}</a>*/}
         </h2>
 
         <span className={css(Styles.meta)}>

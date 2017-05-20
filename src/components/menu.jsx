@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
+import { Link } from 'redux-little-router';
 import { extended } from '../utils/componentUtils';
 
 const Menu = (props) => (
