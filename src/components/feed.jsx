@@ -23,7 +23,6 @@ const Feed = (props) => {
       justifyContent: 'center',
       alignItems: 'center',
       width: '100%',
-      maxWidth: '900px',
     },
     leading: {
       marginBottom: '4em',

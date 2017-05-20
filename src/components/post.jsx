@@ -18,8 +18,12 @@ const Post = (props) => {
   const Styles = extended.StyleSheet.create({
     globals: {
       '*p': {
-        fontWeight: '300',
+        fontWeight: 300,
         margin: '0 0 1em 0',
+        '*code': {
+          fontFamily: 'Menlo, "Roboto Mono", monospace',
+          fontSize: '13px',
+        },
       },
       '*img': {
         display: 'block',
@@ -27,15 +31,20 @@ const Post = (props) => {
         margin: '1em 0',
       },
       '*strong': {
-        fontWeight: '800',
+        fontWeight: 600,
+      },
+      '*em': {
+        fontStyle: 'italic',
+      },
+      '*h3': {
+        fontSize: '16px',
+        fontWeight: 600,
       },
       '*pre': {
-        fontFamily: 'Menlo, "Roboto Mono", monospace',
         lineHeight: '1.5em',
         padding: '1em',
         borderRadius: '3px',
         overflow: 'hidden',
-        fontSize: '12px',
         margin: '2em 0',
         backgroundColor: 'rgba(240, 242, 244, .5)',
         fontWeight: 300,
@@ -45,7 +54,7 @@ const Post = (props) => {
       color: '#74808E',
       display: 'block',
       fontSize: '14px',
-      fontWeight: '200',
+      fontWeight: 200,
       margin: '1.25em 0',
       maxWidth: '650px',
     },
@@ -66,7 +75,7 @@ const Post = (props) => {
     title: {
       color: '#414EF9',
       fontSize: '24px',
-      fontWeight: '200',
+      fontWeight: 200,
       letterSpacing: '0.05em',
       maxWidth: '650px',
     },
