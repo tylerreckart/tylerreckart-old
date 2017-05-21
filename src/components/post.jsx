@@ -79,6 +79,9 @@ const Post = (props) => {
       letterSpacing: '0.05em',
       maxWidth: '650px',
     },
+    fullWidth: {
+      width: '100%',
+    }
   });
 
   function convertNewLines(str) {
@@ -90,7 +93,7 @@ const Post = (props) => {
   const body = new Converter().makeHtml(convertNewLines(content));
 
   return (
-    <div className={className}>
+    <div className={css(Styles.fullWidth)}>
       <div>
         <h2 className={css(Styles.title)}>
           {title}
