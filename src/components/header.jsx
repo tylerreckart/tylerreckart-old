@@ -45,7 +45,7 @@ class Header extends Component {
             />
           </div>
 
-          <Menu isMenuActive={isMenuActive} />
+          <Menu isMenuActive={isMenuActive} {...this.props} />
 
           <div className={css(Styles.itemWrapper)}>
             <a href="/">

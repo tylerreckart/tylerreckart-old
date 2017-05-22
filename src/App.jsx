@@ -35,16 +35,12 @@ const Styles = StyleSheet.create({
 export default class App extends Component {
   componentWillMount() {
     const { dispatch } = this.props;
-    console.log(window.location);
-    console.log(this.props);
-
-    // dispatch(getPosts());
   }
 
   render() {
     return (
       <div className={extended.css(Styles.globals)}>
-        <Header/>
+        <Header {...this.props} />
         <Fragment withConditions={() => this.props.router.route === '/'} forRoute="/"><Home posts={[Post]} /></Fragment>
         <Fragment forRoute='/about'><About /></Fragment>
         <Footer />

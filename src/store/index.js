@@ -62,8 +62,8 @@ const initialState = {
 const store = createStore(
   combineReducers({ router: reducer, post}),
   initialState,
-  // compose(enhancer, applyMiddleware(thunk)),
   compose(enhancer, applyMiddleware(thunk, logger, crashReporter)),
+  // compose(enhancer),
   autoRehydrate()
 );
 
