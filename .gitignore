@@ -1,7 +1,5 @@
 node_modules
-<<<<<<< HEAD
 .env
-=======
 logs
 backups
->>>>>>> fbecfd13ad5c53a270431b9d2ee0b9c87a4566b4
+build
