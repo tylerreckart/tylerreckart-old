@@ -77,6 +77,7 @@ const Post = (props) => {
       fontSize: '24px',
       fontWeight: 200,
       letterSpacing: '0.05em',
+      lineHeight: '1.25em',
       maxWidth: '650px',
     },
     fullWidth: {

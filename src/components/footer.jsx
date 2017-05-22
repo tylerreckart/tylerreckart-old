@@ -11,6 +11,10 @@ const Styles = StyleSheet.create({
     maxWidth: '650px',
     margin: '4em auto',
     fontWeight: '300',
+    '@media (max-width: 700px)': {
+      display: 'block',
+      padding: '0 1.5em',
+    }
   },
   hyperlink: {
     color: '#414EF9',

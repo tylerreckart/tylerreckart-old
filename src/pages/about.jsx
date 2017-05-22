@@ -7,6 +7,10 @@ const About = () => {
     const Styles = StyleSheet.create({
     container: {
       marginTop: '100px',
+      '@media (max-width: 700px)': {
+        display: 'block',
+        padding: '0 1.5em',
+      }
     },
     contentWrapper: {
       alignItems: 'center',

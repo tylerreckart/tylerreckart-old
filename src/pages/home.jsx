@@ -9,6 +9,12 @@ const Styles = StyleSheet.create({
     fontFamily: '-apple-system , BlinkMacSystemFont, "Segoe UI" ,Roboto, "Helvetica Neue" ,Helvetica, sans-serif',
     fontSize: '14px',
     margin: '0 auto',
+    display: 'flex',
+    justifyContent: 'center',
+    '@media (max-width: 700px)': {
+      display: 'block',
+      padding: '0 1.5em',
+    }
   },
 });
 

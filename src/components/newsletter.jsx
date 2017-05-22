@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { css, StyleSheet } from 'aphrodite';
-import { extended } from '../utils/componentUtils';
 import Modal from './modal';
 
 export default class NewsletterSignupForm extends Component {
@@ -29,7 +28,7 @@ export default class NewsletterSignupForm extends Component {
           <div className={css(Styles.content)}>
             <p className={css(Styles.masthead)}>Liked the article? Subscribe below to get an email when new articles come out! Also, follow <a href="https://twitter.com/tylerreckart" target="_blank">@tylerreckart</a> on Twitter.</p>
             <em className={css(Styles.disclaimer)}>One click unsubscribe, any time.</em>
-            <form className={extended.css(Styles.globals)} action="//tylerreckart.us15.list-manage.com/subscribe/post?u=f93b21394164ca036eb1b96d7&amp;id=8b9fc4931a" method="post">
+            <form className={css(Styles.form)} action="//tylerreckart.us15.list-manage.com/subscribe/post?u=f93b21394164ca036eb1b96d7&amp;id=8b9fc4931a" method="post">
               <input className={css(Styles.input)} type="email" onChange={this.handleChange} value={value} name="EMAIL" id="mce-EMAIL" placeholder="example@tylerreckart.com" />
               <input className={css(Styles.submit)} type="submit" value="Subscribe" />
             </form>
@@ -66,17 +65,22 @@ const Styles = StyleSheet.create({
       borderRadius: '6px',
       fontSize: '14px',
       fontWeight: '300',
+      boxSizing: 'border-box',
       margin: '0 .5em 0 0',
+      width: '100%',
       outline: 'none',
       padding: '1em',
-      width: '462px',
+      flexGrow: 1,
       ':focus': {
           border: '1px solid #414EF9',
           boxShadow: '0 0 2px rgba(65,78,249,.20)',
       },
       '::placeholder': {
           color: '#74808E',
-      }
+      },
+      '@media (max-width: 700px)': {
+        margin: 0,
+      },
     },
     submit: {
       cursor: 'pointer',
@@ -90,6 +94,11 @@ const Styles = StyleSheet.create({
       ':hover': {
           backgroundColor: '#0011F8',
           boxShadow: '0 0 2px rgba(65,78,249,.20)',
+      },
+      '@media (max-width: 700px)': {
+        marginTop: '1em',
+        display: 'block',
+        width: '100%',
       }
     },
     masthead: {
@@ -105,5 +114,13 @@ const Styles = StyleSheet.create({
       fontWeight: '300',
       marginBottom: '0.75em',
     },
+    form: {
+      display: 'flex',
+      alignItems: 'flex-end',
+      flexDirection: 'row',
+      '@media (max-width: 700px)': {
+        flexDirection: 'column',
+      },
+    }
   });
   

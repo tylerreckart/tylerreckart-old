@@ -25,7 +25,9 @@ const Styles = StyleSheet.create({
     '*body': {
       fontFamily: '-apple-system , BlinkMacSystemFont, "Segoe UI" ,Roboto, "Helvetica Neue" ,Helvetica, sans-serif',
       fontSize: '14px',
-      margin: '0 auto'
+      margin: '0 auto',
+      overflowX: 'hidden',
+      boxSizing: 'border-box',
     },
   },
 });
