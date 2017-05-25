@@ -9,6 +9,7 @@ yarn start
 Build & Serve:  
 
 ```sh
+yarn build
 yarn global add serve
 serve -s public_html
 ```
