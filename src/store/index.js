@@ -59,12 +59,14 @@ const initialState = {
   }
 };
 
+const composedMiddleware = [
+  applyMiddleware(thunk, middleware)
+];
+
 const store = createStore(
-  combineReducers({ router: reducer, post}),
+  combineReducers({ router: reducer, post }),
   initialState,
-  compose(enhancer, applyMiddleware(thunk, logger, crashReporter)),
-  // compose(enhancer),
-  autoRehydrate()
+  compose(enhancer, ...composedMiddleware)
 );
 
 persistStore(store);

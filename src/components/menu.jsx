@@ -1,18 +1,28 @@
 import React, { Component, PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
-// import { Link } from 'redux-little-router';
+import { Link } from 'redux-little-router';
 import { extended } from '../utils/componentUtils';
 import { push } from 'redux-little-router';
 
 const Menu = (props) => {
+  const dispatchRoute = (payload) => {
+    const {
+      dispatch,
+      toggleMenu
+    } = props;
+
+    dispatch({ type: 'ROUTER_PUSH', payload: payload });
+    toggleMenu();
+  };
+
   return (
     <div>
       <div className={css(Styles.menu, props.isMenuActive === true ? Styles.menuActive : Styles.menuHidden)}>
         <p className={css(Styles.description)}>Tyler Reckart is a Software Engineer at <a href="https://boomtownroi.com/" target="_blank">BoomTown</a> focusing on front end architecture and design.</p>
         <nav>
           <ul className={extended.css(Styles.globals, Styles.navMenu)}>
-            <li><a href="javascript:void(0)" onClick={() => props.dispatch({ type: 'ROUTER_PUSH', payload: '/' })}>Journal</a></li>
-            <li><a href="javascript:void(0)" onClick={() => props.dispatch({ type: 'ROUTER_PUSH', payload: '/about' })}>About</a></li>
+            <li><a href="javascript:void(0)" onClick={() => dispatchRoute('/')}>Journal</a></li>
+            <li><a href="javascript:void(0)" onClick={() => dispatchRoute('/about')}>About</a></li>
             <li><a href="https://github.com/tylerreckart" target="_blank">Github</a></li>
             <li><a href="https://twitter.com/tylerreckart" target="_blank">@tylerreckart</a></li>
           </ul>

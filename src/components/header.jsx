@@ -45,7 +45,11 @@ class Header extends Component {
             />
           </div>
 
-          <Menu isMenuActive={isMenuActive} {...this.props} />
+          <Menu
+            {...this.props}
+            isMenuActive={isMenuActive}
+            toggleMenu={() => this.toggleMenu()}
+          />
 
           <div className={css(Styles.itemWrapper)}>
             <a href="/">
