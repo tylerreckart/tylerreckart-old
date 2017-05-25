@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { css, StyleSheet } from 'aphrodite';
+import { Link } from 'redux-little-router';
 
 import Menu from './menu';
 import Trigger from './trigger';
@@ -52,9 +53,9 @@ class Header extends Component {
           />
 
           <div className={css(Styles.itemWrapper)}>
-            <a href="/">
+            <Link href="/">
               <div className={css(Styles.profileImg)} />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
