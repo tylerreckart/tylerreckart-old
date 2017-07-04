@@ -47,7 +47,7 @@ const Feed = (props) => {
               }
               datePublished={post.date_published}
               content={post.content}
-              summary={false}
+              summary
               title={post.title}
               url={post.url}
             />

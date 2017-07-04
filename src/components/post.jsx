@@ -64,7 +64,8 @@ const Post = (props) => {
       textDecoration: 'none',
     },
     readMore: {
-      color: '#1B95E0',
+      color: '#414EF9',
+      fontWeight: 200,
       margin: '1em 0 0 0',
     },
     summary: {
@@ -91,14 +92,17 @@ const Post = (props) => {
     return $str;
   };
 
-  const body = new Converter().makeHtml(convertNewLines(content));
+  const preview = summarize(content);
+  const converter = content => {
+    return new Converter().makeHtml(convertNewLines(content));
+  };
+
 
   return (
     <div className={css(Styles.fullWidth)}>
       <div>
         <h2 className={css(Styles.title)}>
-          {title}
-          {/*<a className={css(Styles.permalink)} href={url}>{title}</a>*/}
+          <a className={css(Styles.permalink)} href={url}>{title}</a>
         </h2>
 
         <span className={css(Styles.meta)}>
@@ -106,11 +110,16 @@ const Post = (props) => {
         </span>
 
         <div className={css(Styles.summary)}>
-          {!summary ? <div className={extended.css(Styles.globals)} dangerouslySetInnerHTML={{ __html: body }} /> : summarize(content)}
+          {
+            !summary ?
+              <div className={extended.css(Styles.globals)} dangerouslySetInnerHTML={{ __html: converter(content) }} />
+             :
+              <div className={extended.css(Styles.globals)} dangerouslySetInnerHTML={{ __html: converter(preview) }} />
+          }
         </div>
-        {!summary ? <div /> : <a className={css(Styles.permalink, Styles.readMore)} href={url}>Read More</a>}
+        {!summary ? null : <a className={css(Styles.permalink, Styles.readMore)} href={url}>Read More</a>}
       </div>
-      <NewsletterSignupForm />
+      {!summary ? <NewsletterSignupForm /> : null}
     </div>
   );
 };
