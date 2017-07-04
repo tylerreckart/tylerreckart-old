@@ -75,7 +75,7 @@ const Styles = StyleSheet.create({
       zIndex: '100',
     },
     profileImg: {
-      background: `url('https://pbs.twimg.com/profile_images/737021651683008512/5HO2-2qq.jpg')`,
+      background: `url('https://pbs.twimg.com/profile_images/877350158685622272/06lTc2v-_400x400.jpg')`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
