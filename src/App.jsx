@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { css, StyleSheet } from 'aphrodite';
 import { getPosts } from './actions';
 import { Fragment } from 'redux-little-router';
 
@@ -20,18 +19,6 @@ const Post = {
   url: 'fizzbuzz',
 };
 
-const Styles = StyleSheet.create({
-  globals: {
-    '*body': {
-      fontFamily: '-apple-system , BlinkMacSystemFont, "Segoe UI" ,Roboto, "Helvetica Neue" ,Helvetica, sans-serif',
-      fontSize: '14px',
-      margin: '0 auto',
-      overflowX: 'hidden',
-      boxSizing: 'border-box',
-    },
-  },
-});
-
 export default class App extends Component {
   componentWillMount() {
     const { dispatch } = this.props;
@@ -39,7 +26,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className={extended.css(Styles.globals)}>
+      <div>
         <Header {...this.props} />
         <Fragment withConditions={() => this.props.router.route === '/'} forRoute="/"><Home posts={[Post]} /></Fragment>
         <Fragment forRoute='/about'><About /></Fragment>

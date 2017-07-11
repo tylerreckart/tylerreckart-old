@@ -68,7 +68,6 @@
     "postcss-loader": "1.2.2",
     "promise": "7.1.1",
     "react-dev-utils": "^0.5.2",
-    "relay-compiler": "^1.1.0",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
     "webpack": "1.14.0",
@@ -78,10 +77,10 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "serve": "nodemon server/index.js --exec babel-node --presets es2015,stage-2",
+    "serve": "nodemon ./.fortress/server/index.js --exec babel-node --presets es2015,stage-2",
     "build": "node scripts/build.js",
-    "relay": "relay-compiler --src ./src --schema server/schema.graphql",
-    "update-schema": "babel-node ./server/updateSchema.js",
+    "relay": "relay-compiler --src ./src --schema ./.fortress/server/schema.graphql",
+    "update-schema": "babel-node ./.fortress/server/updateSchema.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
