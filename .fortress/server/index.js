@@ -1,13 +1,21 @@
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
+import postgraphql from 'postgraphql';
+import { addMockFunctionsToSchema } from 'graphql-tools';
 require('dotenv').config();
 
 import schema from './schema';
-import connectdb from '../database';
+import mocks from './mocks';
+
+addMockFunctionsToSchema({
+  schema,
+  mocks,
+});
 
 const serve = async () => {
-  const mongo = await connectdb();
   const app = express();
+
+  // app.use(postgraphql('postgres://localhost:5432'));
 
   app.use('/graphql', graphqlHTTP({
     schema,

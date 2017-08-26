@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { getPosts } from './actions';
 import { Fragment } from 'redux-little-router';
+import styled from 'styled-components';
+import { createApolloFetch } from 'apollo-fetch';
 
 import Header from './components/header';
 import Footer from './components/footer';
@@ -19,19 +21,42 @@ const Post = {
   url: 'fizzbuzz',
 };
 
+const Body = styled.div`
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 14px;
+  margin: 0 auto;
+`;
+
 export default class App extends Component {
   componentWillMount() {
     const { dispatch } = this.props;
+
+    const query = `
+      {
+        post(url: "journal/writing-a-binary-search-algorithm-in-javascript") {
+          title,
+          created,
+          content,
+        }
+      }
+    `;
+    const uri = 'http://localhost:4000/graphql';
+    const apolloFetch = createApolloFetch({ uri });
+
+    apolloFetch({ query })
+      .then(response => console.log(response))
+      .catch(err => console.error(err));
   }
 
   render() {
     return (
-      <div>
+      <Body>
         <Header {...this.props} />
         <Fragment withConditions={() => this.props.router.route === '/'} forRoute="/"><Home posts={[Post]} /></Fragment>
         <Fragment forRoute='/about'><About /></Fragment>
+        <Fragment forRoute='/journal/:post'><h1>Heya</h1></Fragment>
         <Footer />
-      </div>
+      </Body>
     );
   }
 }

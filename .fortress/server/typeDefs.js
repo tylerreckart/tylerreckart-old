@@ -10,7 +10,10 @@ const typeDefs = `
   }
 
   type Query {
-    post(id: Int!): Post
+    post(
+      id: Int
+      url: String
+    ): Post
     posts: [Post]
   }
 `;

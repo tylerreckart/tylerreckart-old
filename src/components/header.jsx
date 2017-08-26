@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { css, StyleSheet } from 'aphrodite';
 import { Link } from 'redux-little-router';
+import styled from 'styled-components';
 
 import Menu from './menu';
 import Trigger from './trigger';
@@ -12,22 +13,23 @@ class Header extends Component {
 
     this.state = {
       isMenuActive: false,
+      isTooltipActive: false,
     };
   }
 
-  toggleMenu() {
-    if (this.state.isMenuActive === false) {
-      this.setState({
-        isMenuActive: true,
-      });
-    } else if (this.state.isMenuActive === true) {
-      this.setState({
-        isMenuActive: false,
-      });
-    }
+   toggleTooltip() {
+     const { isTooltipActive } = this.state;
 
-    return;
-  }
+     if (isTooltipActive) {
+       this.setState({
+         isTooltipActive: false,
+       });
+     } else {
+       this.setState({
+         isTooltipActive: true,
+       });
+     }
+   }
 
   render() {
     const {
@@ -56,6 +58,7 @@ class Header extends Component {
             <Link href="/">
               <div className={css(Styles.profileImg)} />
             </Link>
+            {this.state.isMenuActive ? <Tooltip /> : null}
           </div>
         </div>
       </div>
@@ -75,7 +78,7 @@ const Styles = StyleSheet.create({
       zIndex: '100',
     },
     profileImg: {
-      background: `url('https://pbs.twimg.com/profile_images/877350158685622272/06lTc2v-_400x400.jpg')`,
+      background: `url('https://pbs.twimg.com/profile_images/900381304751042560/fX56nnNC_400x400.jpg')`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',

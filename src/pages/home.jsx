@@ -6,9 +6,6 @@ import Pagination from '../components/pagination';
 
 const Styles = StyleSheet.create({
   container: {
-    fontFamily: '-apple-system , BlinkMacSystemFont, "Segoe UI" ,Roboto, "Helvetica Neue" ,Helvetica, sans-serif',
-    fontSize: '14px',
-    margin: '0 auto',
     display: 'flex',
     justifyContent: 'center',
     '@media (max-width: 700px)': {
