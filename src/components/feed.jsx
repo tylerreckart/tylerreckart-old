@@ -66,12 +66,12 @@ Feed.defaultProps = {
 
 Feed.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    date_published: PropTypes.number.isRequired,
-    public: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired
+    id: PropTypes.number,
+    date_published: PropTypes.number,
+    public: PropTypes.bool,
+    title: PropTypes.string,
+    content: PropTypes.string,
+    url: PropTypes.string
   })),
 };
 

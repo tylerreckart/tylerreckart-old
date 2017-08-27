@@ -1,30 +1,38 @@
 import React, { Component, PropTypes } from 'react';
-import { css, StyleSheet } from 'aphrodite';
+import { gql, graphql } from 'react-apollo';
+import styled from 'styled-components';
 
 import Feed from '../components/feed';
 import Pagination from '../components/pagination';
 
-const Styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    '@media (max-width: 700px)': {
-      display: 'block',
-      padding: '0 1.5em',
-    }
-  },
-});
+const Rect = styled.div`
+  display: flex;
+  justify-content: center;
+  @media (max-width: 700px) {
+    display: block;
+    padding: 0 1.5em;
+  }
+`;
 
 const Home = (props) => {
-  const posts = props.posts !== undefined ? props.posts : [];
-
+  let posts = [];
+  if (props.data.posts) {
+    posts = props.data.posts.slice(0,1);
+  }
   return (
-    <div className={css(Styles.container)}>
+    <Rect>
       <Feed posts={posts} />
       {/*<Pagination />*/}
-    </div>
+    </Rect>
   );
 };
+
+// This is where you retrieve data from the redux store
+// const mapStateToProps = (state, { params }) => ({});
+
+// Bind dispatch actions that are used to request data from the
+// backend. This gets called in `componentDidMount()`
+// const mapDispatchToProps = (dispatch) => {};
 
 Home.defaultProps = {
   posts: [],
@@ -32,13 +40,22 @@ Home.defaultProps = {
 
 Home.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    date_published: PropTypes.number.isRequired,
-    public: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired
+    id: PropTypes.numberd,
+    created: PropTypes.number,
+    public: PropTypes.bool,
+    title: PropTypes.string,
+    content: PropTypes.string,
+    url: PropTypes.string
   })),
 };
 
-export default Home;
+export default graphql(gql`
+  query {
+    posts {
+      title
+      created
+      content
+      url
+    }
+  }
+`)(Home);

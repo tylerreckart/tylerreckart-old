@@ -131,7 +131,7 @@ Post.defaultProps = {
 Post.propTypes = {
   className: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  datePublished: PropTypes.number.isRequired,
+  created: PropTypes.number,
   summary: PropTypes.bool,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
