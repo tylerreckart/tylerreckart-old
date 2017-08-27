@@ -13,11 +13,15 @@ addMockFunctionsToSchema({
   mocks,
 });
 
-const serve = async () => {
+const serve = () => {
   const app = express();
 
   // PostgreSQL
-  // app.use(postgraphql('postgres://localhost:5432'));
+  app.use(postgraphql(
+    'postgres://localhost:5432/treckart',
+    'fortress',
+    { graphiql: true }
+  ));
 
   // Headers
   app.use((req, res, next) => {
@@ -31,10 +35,10 @@ const serve = async () => {
   });
 
   // GraphQL
-  app.use('/graphql', cors(), graphqlHTTP({
-    schema,
-    graphiql: true
-  }));
+  // app.use('/graphql', cors(), graphqlHTTP({
+  //   schema,
+  //   graphiql: true
+  // }));
 
-  app.listen(4000, () => console.log('GraphQL server up and running on localhost:4000/graphql'));
+  app.listen(8080, () => console.log('GraphiQL served at localhost:8080/graphiql'));
 };serve();
