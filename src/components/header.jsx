@@ -7,6 +7,21 @@ import styled from 'styled-components';
 import Menu from './menu';
 import Trigger from './trigger';
 
+const Rect = styled.div`
+  // background-color: white;
+  // border-bottom: 1px solid #E6E8EB;
+  // box-shadow: 0 0 4px rgba(0,0,0,.10);
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+`;
+
 class Header extends Component {
     constructor(props) {
     super(props);
@@ -39,7 +54,7 @@ class Header extends Component {
 
     return (
       <div>
-        <div className={css(Styles.header)}>
+        <Rect>
           <div className={css(Styles.itemWrapper, Styles.menuItemWrapper)}>
             <Trigger 
               isMenuActive={isMenuActive}
@@ -58,23 +73,13 @@ class Header extends Component {
               <div className={css(Styles.profileImg)} />
             </Link>
           </div>
-        </div>
+        </Rect>
       </div>
     );
   }
 }
 
 const Styles = StyleSheet.create({
-    header: {
-      display: 'flex',
-      flexDirection: 'row-reverse',
-      flexWrap: 'nowrap',
-      justifyContent: 'space-between',
-      position: 'fixed',
-      top: 0,
-      width: '100%',
-      zIndex: '100',
-    },
     profileImg: {
       background: `url('https://pbs.twimg.com/profile_images/900381304751042560/fX56nnNC_400x400.jpg')`,
       backgroundPosition: 'center',
