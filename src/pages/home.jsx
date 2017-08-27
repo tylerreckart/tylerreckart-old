@@ -16,7 +16,7 @@ const Rect = styled.div`
 const Home = (props) => {
   let posts = [];
   if (props.data.posts) {
-    posts = props.data.posts.slice(0,1);
+    posts = props.data.posts;
   }
 
   const node = (

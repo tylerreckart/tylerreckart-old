@@ -1,28 +1,32 @@
 import React from 'react';
 import { css, StyleSheet } from 'aphrodite';
+import styled from 'styled-components';
 
-const Styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    margin: '4em auto',
-    maxWidth: '650px',
-    fontSize: '12px',
-    fontWeight: '300',
-  },
-  inactive: {
-    color: '#74808E',
-    textDecoration: 'none',
-    pointerEvents: 'none',
-  }
-});
+const Rect = styled.div`
+  bottom: 0;
+  display: flex;
+  font-size: 12px;
+  font-weight: 300;
+  justify-content: space-between;
+  left: 50%;
+  margin: 3em 0 8em 0;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 650px;
+`;
+
+const Link = styled.a`
+  color: #74808E;
+  pointer-events: none;
+  text-decoration: none;
+`;
 
 const Pagination = () => (
-  <div className={css(Styles.container)}>
-    <div><a className={css(Styles.inactive)} href="#" disabled>Older</a></div>
+  <Rect>
+    <div><Link>Older</Link></div>
     <div><span>1 of 1</span></div>
-    <div><a className={css(Styles.inactive)} href="#" disabled>Newer</a></div>
-  </div>
+    <div><Link>Newer</Link></div>
+  </Rect>
 );
 
 export default Pagination;
