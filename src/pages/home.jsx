@@ -6,8 +6,7 @@ import Feed from '../components/feed';
 import Pagination from '../components/pagination';
 
 const Rect = styled.div`
-  display: flex;
-  justify-content: center;
+  display: block;
   @media (max-width: 700px) {
     display: block;
     padding: 0 1.5em;
@@ -22,7 +21,7 @@ const Home = (props) => {
   return (
     <Rect>
       <Feed posts={posts} />
-      {/*<Pagination />*/}
+      <Pagination />
     </Rect>
   );
 };

@@ -22,7 +22,7 @@ const Feed = (props) => {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      width: '100%',
+      maxWidth: '650px',
     },
     leading: {
       marginBottom: '4em',
@@ -38,7 +38,7 @@ const Feed = (props) => {
         <div className={css(Styles.feed)}>
           {posts.map(post => (
             <Post
-              key={post.id}
+              key={`post-${post.id}`}
               className={
                 css(
                   posts[posts.length - 1] === post ? Styles.terminal : Styles.leading,

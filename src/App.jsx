@@ -6,10 +6,14 @@ import ApolloClient, { createNetworkInterface, addTypename } from 'apollo-client
 import { ApolloProvider } from 'react-apollo';
 import { createApolloFetch } from 'apollo-fetch';
 
+// Components
 import Header from './components/header';
 import Footer from './components/footer';
+// Pages
 import Home from './pages/home';
 import About from './pages/about';
+// Templates
+import PostTemplate from './templates/post';
 
 import { extended } from './utils/componentUtils';
 
@@ -39,7 +43,7 @@ export default class App extends Component {
             <Home />
           </Fragment>
           <Fragment forRoute='/about'><About /></Fragment>
-          <Fragment forRoute='/journal/:post'><h1>Hello, World!</h1></Fragment>
+          <Fragment forRoute='/journal/:post'><PostTemplate /></Fragment>
           <Footer />
         </Body>
       </ApolloProvider>

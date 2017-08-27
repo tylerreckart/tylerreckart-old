@@ -3,8 +3,6 @@ import { css, StyleSheet } from 'aphrodite';
 import showdown, { Converter } from 'showdown';
 import { extended, formatDate, readingTime, summarize } from '../utils/componentUtils';
 
-import NewsletterSignupForm from './newsletter';
-
 const Post = (props) => {
   const {
     className,
@@ -82,7 +80,7 @@ const Post = (props) => {
       maxWidth: '650px',
     },
     fullWidth: {
-      width: '100%',
+      maxWidth: '650px',
     }
   });
 
@@ -119,7 +117,6 @@ const Post = (props) => {
         </div>
         {!summary ? null : <a className={css(Styles.permalink, Styles.readMore)} href={url}>Read More</a>}
       </div>
-      {!summary ? <NewsletterSignupForm /> : null}
     </div>
   );
 };
@@ -129,12 +126,12 @@ Post.defaultProps = {
 };
 
 Post.propTypes = {
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   content: PropTypes.string.isRequired,
   created: PropTypes.number,
   summary: PropTypes.bool,
   title: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
 };
 
 export default Post;

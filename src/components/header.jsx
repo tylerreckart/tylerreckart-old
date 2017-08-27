@@ -13,23 +13,22 @@ class Header extends Component {
 
     this.state = {
       isMenuActive: false,
-      isTooltipActive: false,
     };
   }
 
-   toggleTooltip() {
-     const { isTooltipActive } = this.state;
+  toggleMenu() {
+    if (this.state.isMenuActive === false) {
+      this.setState({
+        isMenuActive: true,
+      });
+    } else if (this.state.isMenuActive === true) {
+      this.setState({
+        isMenuActive: false,
+      });
+    }
 
-     if (isTooltipActive) {
-       this.setState({
-         isTooltipActive: false,
-       });
-     } else {
-       this.setState({
-         isTooltipActive: true,
-       });
-     }
-   }
+    return;
+  }
 
   render() {
     const {
@@ -58,7 +57,6 @@ class Header extends Component {
             <Link href="/">
               <div className={css(Styles.profileImg)} />
             </Link>
-            {this.state.isMenuActive ? <Tooltip /> : null}
           </div>
         </div>
       </div>
