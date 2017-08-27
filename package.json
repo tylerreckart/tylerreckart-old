@@ -80,11 +80,11 @@
     "whatwg-fetch": "2.0.2"
   },
   "scripts": {
-    "start": "node ./.fortress/scripts/start.js",
-    "serve": "nodemon ./.fortress/server/index.js --exec babel-node --presets es2015,stage-2",
+    "start": "node ./fortress/scripts/start.js",
+    "serve": "nodemon ./fortress/server/index.js --exec babel-node --presets es2015,stage-2",
     "build": "node ./fortress/scripts/build.js",
-    "relay": "relay-compiler --src ./src --schema ./.fortress/server/schema.graphql",
-    "update-schema": "babel-node ./.fortress/server/updateSchema.js",
+    "relay": "relay-compiler --src ./src --schema ./fortress/server/schema.graphql",
+    "update-schema": "babel-node ./fortress/server/updateSchema.js",
     "test": "node ./fortress/scripts/test.js --env=jsdom"
   },
   "jest": {
