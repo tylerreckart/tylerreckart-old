@@ -18,12 +18,15 @@ const Home = (props) => {
   if (props.data.posts) {
     posts = props.data.posts.slice(0,1);
   }
-  return (
+
+  const node = (
     <Rect>
       <Feed posts={posts} />
       <Pagination />
     </Rect>
   );
+
+  return posts.length > 0 ? node : null;  
 };
 
 // This is where you retrieve data from the redux store

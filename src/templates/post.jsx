@@ -9,7 +9,7 @@ import Post from '../components/post';
 const Rect = styled.div`
   margin: 0 auto;
   width: 650px;
-  margin-top: 100px;
+  margin-top: 120px;
 `;
 
 const PostTemplate = (props) => {
@@ -22,6 +22,7 @@ const PostTemplate = (props) => {
           <Post
             datePublished={post.created}
             content={post.content}
+            created={post.created}
             summary={false}
             title={post.title}
             url={post.url}

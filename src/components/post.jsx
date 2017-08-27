@@ -7,7 +7,7 @@ const Post = (props) => {
   const {
     className,
     content,
-    datePublished,
+    created,
     summary,
     title,
     url,
@@ -104,7 +104,7 @@ const Post = (props) => {
         </h2>
 
         <span className={css(Styles.meta)}>
-          {formatDate(datePublished)} {readingTime(content)}
+          {formatDate(created)} {readingTime(content)}
         </span>
 
         <div className={css(Styles.summary)}>
@@ -128,7 +128,7 @@ Post.defaultProps = {
 Post.propTypes = {
   className: PropTypes.string,
   content: PropTypes.string.isRequired,
-  created: PropTypes.number,
+  created: PropTypes.string,
   summary: PropTypes.bool,
   title: PropTypes.string.isRequired,
   url: PropTypes.string,

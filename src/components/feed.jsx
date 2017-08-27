@@ -45,7 +45,7 @@ const Feed = (props) => {
                   Styles.post
                 )
               }
-              datePublished={post.date_published}
+              created={post.created}
               content={post.content}
               summary
               title={post.title}
@@ -67,7 +67,7 @@ Feed.defaultProps = {
 Feed.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
-    date_published: PropTypes.number,
+    created: PropTypes.string,
     public: PropTypes.bool,
     title: PropTypes.string,
     content: PropTypes.string,

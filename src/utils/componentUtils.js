@@ -20,7 +20,7 @@ export function formatDate(timestamp) {
     'Dec',
   ];
 
-  const date = new Date(timestamp);
+  const date = new Date(parseInt(timestamp, 10));
 
   const month = months[date.getMonth()];
   const day = date.getUTCDate();
