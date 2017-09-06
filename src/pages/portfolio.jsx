@@ -6,6 +6,13 @@ const Container = styled.div`
   max-width: 800px;
 `;
 
+const Header = styled.h2`
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin: 10px 0;
+`;
+
 const Shot = styled.img`
   display: block;
   max-width: 200px;
@@ -78,16 +85,29 @@ export default class Portfolio extends Component {
 
     return (
       <Container>
-        <h1>Dribbble</h1>
-        <ShotContainer>
-          {shots.map(shot => (
-            <div key={shot.id}>
-              <ShotAnchor href={shot.html_url}>
-                <Shot src={shot.images.hidpi} />
-              </ShotAnchor>
-            </div>
-          ))}
-        </ShotContainer>
+        <div>
+          <Header>2017</Header>
+        </div>
+
+        <div>
+          <Header>2016</Header>
+        </div>
+
+        <div>
+          <Header>Dribbble</Header>
+          <ShotContainer>
+            {shots.map(shot => (
+              <div key={shot.id}>
+                <ShotAnchor href={shot.html_url}>
+                  <Shot
+                    src={shot.images.hidpi}
+                    target="_blank"
+                  />
+                </ShotAnchor>
+              </div>
+            ))}
+          </ShotContainer>
+        </div>
       </Container>
     );
   }

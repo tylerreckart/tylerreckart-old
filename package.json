@@ -83,19 +83,19 @@
     "whatwg-fetch": "2.0.2"
   },
   "scripts": {
-    "start": "node ./fortress/scripts/start.js",
-    "serve": "nodemon ./fortress/server/index.js --exec babel-node --presets es2015,stage-2",
-    "build": "node ./fortress/scripts/build.js",
-    "relay": "relay-compiler --src ./src --schema ./fortress/server/schema.graphql",
-    "update-schema": "babel-node ./fortress/server/updateSchema.js",
-    "test": "node ./fortress/scripts/test.js --env=jsdom"
+    "start": "node ./capybara/scripts/start.js",
+    "serve": "nodemon ./capybara/server/index.js --exec babel-node --presets es2015,stage-2",
+    "build": "node ./capybara/scripts/build.js",
+    "relay": "relay-compiler --src ./src --schema ./capybara/server/schema.graphql",
+    "update-schema": "babel-node ./capybara/server/updateSchema.js",
+    "test": "node ./capybara/scripts/test.js --env=jsdom"
   },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
     ],
     "setupFiles": [
-      "<rootDir>/./fortress/config/polyfills.js"
+      "<rootDir>/./capybara/config/polyfills.js"
     ],
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
@@ -104,8 +104,8 @@
     "testURL": "http://localhost",
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/./fortress/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/./fortress/config/jest/fileTransform.js"
+      "^.+\\.css$": "<rootDir>/./capybara/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/./capybara/config/jest/fileTransform.js"
     },
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
