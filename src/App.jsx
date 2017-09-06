@@ -12,6 +12,7 @@ import Footer from './components/footer';
 // Pages
 import Home from './pages/home';
 import About from './pages/about';
+import Portfolio from './pages/portfolio';
 // Templates
 import PostTemplate from './templates/post';
 
@@ -19,7 +20,7 @@ import { extended } from './utils/componentUtils';
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({
-    uri: 'http://localhost:4000/graphql',
+    uri: 'http://localhost:8080/graphql',
   }),
   queryTransformer: addTypename,
 });
@@ -43,6 +44,7 @@ export default class App extends Component {
             <Home />
           </Fragment>
           <Fragment forRoute='/about'><About /></Fragment>
+          <Fragment forRoute='/portfolio'><Portfolio /></Fragment>
           <Fragment forRoute='/journal/:post'><PostTemplate /></Fragment>
           <Footer />
         </Body>

@@ -3,7 +3,6 @@ import { css, StyleSheet } from 'aphrodite';
 
 const Styles = StyleSheet.create({
   container: {
-    borderTop: '1px solid #F2F3F5',
     color: '#74808E',
     display: 'flex',
     justifyContent: 'space-between',

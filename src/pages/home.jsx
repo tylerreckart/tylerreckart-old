@@ -15,8 +15,8 @@ const Rect = styled.div`
 
 const Home = (props) => {
   let posts = [];
-  if (props.data.posts) {
-    posts = props.data.posts;
+  if (props.data.allPosts) {
+    posts = props.data.allPosts.nodes;
   }
 
   const node = (
@@ -53,11 +53,13 @@ Home.propTypes = {
 
 export default graphql(gql`
   query {
-    posts {
-      title
-      created
-      content
-      url
+    allPosts(orderBy: ID_ASC) {
+      nodes {
+        title
+        created
+        content
+        url
+      }
     }
   }
 `)(Home);
