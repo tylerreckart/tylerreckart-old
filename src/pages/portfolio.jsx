@@ -1,5 +1,44 @@
 import React, { Component } from 'react';
-import { css, StyleSheet } from 'aphrodite';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  margin: 0 auto;
+  max-width: 800px;
+`;
+
+const Shot = styled.img`
+  display: block;
+  max-width: 200px;
+`;
+
+const ShotAnchor = styled.a`
+  background-color: #000;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  img {
+    transition: all 300ms ease;
+  }
+  &:hover {
+    border: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    img {
+      opacity: .75;
+    }
+  }
+`;
+
+const ShotContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  max-width: 800px;
+`;
 
 export default class Portfolio extends Component {
   constructor(props) {
@@ -35,20 +74,21 @@ export default class Portfolio extends Component {
 
   render() {
     const { shots } = this.state;
+    console.log(shots);
 
     return (
-      <div>
+      <Container>
         <h1>Dribbble</h1>
-        <div>
+        <ShotContainer>
           {shots.map(shot => (
             <div key={shot.id}>
-              <a href={shot.html_url}>
-                <img src={shot.images.teaser} />
-              </a>
+              <ShotAnchor href={shot.html_url}>
+                <Shot src={shot.images.hidpi} />
+              </ShotAnchor>
             </div>
           ))}
-        </div>
-      </div>
+        </ShotContainer>
+      </Container>
     );
   }
 };
