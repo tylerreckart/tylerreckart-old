@@ -2,9 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { getPosts } from './actions';
 import { Fragment } from 'redux-little-router';
 import styled from 'styled-components';
-import ApolloClient, { createNetworkInterface, addTypename } from 'apollo-client';
+import ApolloClient  from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
-import { createApolloFetch } from 'apollo-fetch';
+import { ApolloLink } from 'apollo-link';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 // Components
 import Header from './components/header';
@@ -16,13 +18,9 @@ import Portfolio from './pages/portfolio';
 // Templates
 import PostTemplate from './templates/post';
 
-import { extended } from './utils/componentUtils';
-
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface({
-    uri: 'http://localhost:8080/graphql',
-  }),
-  queryTransformer: addTypename,
+  link: new HttpLink({ uri: 'https://api.example.com/graphql' }),
+  cache: new InMemoryCache()
 });
 
 const Body = styled.div`
