@@ -4,8 +4,8 @@ import { css, StyleSheet } from 'aphrodite';
 import { Link } from 'redux-little-router';
 import styled from 'styled-components';
 
-import Menu from './menu';
-import Trigger from './trigger';
+import Menu from '../Menu';
+import Trigger from '../Trigger';
 
 const Rect = styled.div`
   // background-color: white;

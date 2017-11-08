@@ -8,7 +8,7 @@ const serve = () => {
 
   app.use(cors(), postgraphql(
     'postgres://localhost:5432/treckart',
-    'fortress',
+    'api',
     { graphiql: true }
   ));
 

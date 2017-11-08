@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import Raven from 'raven-js';
 import { routerForBrowser, initializeCurrentLocation } from 'redux-little-router';
 
-import post from '../reducers/posts';
+// import post from '../reducers/posts';
 
 const logger = store => next => (action) => {
   console.log('dispatching', action);
@@ -56,10 +56,10 @@ const {
 });
 
 const initialState = {
-  post: {
-    posts: [],
-    isFetching: true,
-  }
+//   post: {
+//     posts: [],
+//     isFetching: true,
+//   }
 };
 
 const composedMiddleware = [
@@ -67,7 +67,7 @@ const composedMiddleware = [
 ];
 
 const store = createStore(
-  combineReducers({ router: reducer, post }),
+  combineReducers({ router: reducer }),
   initialState,
   compose(enhancer, ...composedMiddleware)
 );

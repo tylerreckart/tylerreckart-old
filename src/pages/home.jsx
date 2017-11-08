@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { gql, graphql } from 'react-apollo';
 import styled from 'styled-components';
 
-import Feed from '../components/feed';
-import Pagination from '../components/pagination';
+import Feed from '../components/Feed';
+import Pagination from '../components/Pagination';
 
 const Rect = styled.div`
   display: block;

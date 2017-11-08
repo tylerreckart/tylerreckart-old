@@ -3,8 +3,6 @@ import App from '../App';
 
 const mapStateToProps = state => {
   return {
-    posts: state.post.posts || [],
-    isFetching: state.post.isFetching,
     router: state.router,
   };
 };

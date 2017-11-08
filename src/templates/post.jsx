@@ -3,8 +3,8 @@ import { css, StyleSheet } from 'aphrodite';
 import { gql, graphql } from 'react-apollo';
 import styled from 'styled-components';
 
-import Single from '../components/single';
-import Post from '../components/post';
+import Single from '../components/Single';
+import Post from '../components/Post';
 
 const Rect = styled.div`
   margin: 0 auto;
@@ -13,28 +13,29 @@ const Rect = styled.div`
 `;
 
 const PostTemplate = (props) => {
-  const post = props.data.post;
+  const post = props.data.postById;
 
-  return (
-    <Rect>
-      {
-        props.data.post ?
-          <Post
-            datePublished={post.created}
-            content={post.content}
-            created={post.created}
-            summary={false}
-            title={post.title}
-            url={post.url}
-          />
-        : null
-      }
-    </Rect>
-  );
+  if (post) {
+    return (
+      <Rect>
+        <Post
+          datePublished={post.created}
+          content={post.content}
+          created={post.created}
+          summary={false}
+          title={post.title}
+          url={post.url}
+         />
+      </Rect>
+    );
+  }
+
+  return null;
 };
+
 export default graphql(gql`
   query {
-    post(url: "journal/writing-a-binary-search-algorithm-in-javascript") {
+    postById(id: 0) {
       title
       created
       content

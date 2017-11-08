@@ -1,7 +1,7 @@
 import React from 'react';
 import { css, StyleSheet } from 'aphrodite';
 
-import Single from '../components/single';
+import Single from '../components/Single';
 
 const About = () => {
     const Styles = StyleSheet.create({
