@@ -32,19 +32,21 @@ export default class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <Body>
-          <Header {...this.props} />
-          <Fragment
-            withConditions={() => this.props.router.route === '/'}
-            forRoute="/"
-          >
-            <Home />
-          </Fragment>
-          <Fragment forRoute='/about'><About /></Fragment>
-          <Fragment forRoute='/portfolio'><Portfolio /></Fragment>
-          <Fragment forRoute='/journal/:post'><PostTemplate /></Fragment>
-          <Footer />
-        </Body>
+        <Fragment forRoute="/">
+          <Body>
+            <Header {...this.props} />
+
+            <Fragment forRoute="/"><Home /></Fragment>
+            <Fragment forRoute='/about'><About /></Fragment>
+            {/* <Fragment forRoute='/portfolio'><Portfolio /></Fragment> */}
+            <Fragment forRoute='/journal/:post'><PostTemplate /></Fragment>
+            <Fragment forNoMatch>
+              <h1>Not found!</h1>
+              <p>It looks like the page you're looking for doesn't exist.</p>
+            </Fragment>
+            <Footer />
+          </Body>
+        </Fragment>
       </ApolloProvider>
     );
   }

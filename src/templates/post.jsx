@@ -9,7 +9,6 @@ import Post from '../components/Post';
 const Rect = styled.div`
   margin: 0 auto;
   width: 650px;
-  margin-top: 80px;
 `;
 
 const PostTemplate = (props) => {

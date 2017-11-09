@@ -62,6 +62,15 @@ const Post = props => {
     url,
   } = props;
 
+  const dispatchRoute = (payload) => {
+    const {
+      dispatch,
+      toggleMenu
+    } = props;
+
+    dispatch({ type: 'ROUTER_PUSH', payload: payload });
+  };
+
   const preview = summarize(content);
 
   const convertNewLines = str => {
@@ -83,7 +92,7 @@ const Post = props => {
       <Title><Link href={url}>{title}</Link></Title>
       <MetaInfo>{moment(created).format("MMMM Do, YYYY")}</MetaInfo>
       <Content>{!summary ? renderPost(content) : renderPost(preview)}</Content>
-      {summary ? <Link href={url} style={{ color: 'rgba(56, 119, 250, 1.00)' }}>Read More</Link> : null}
+      {summary ? <Link onClick={() => dispatchRoute(url)}>Read More</Link> : null}
     </div>
   );
 };

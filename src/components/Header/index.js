@@ -36,9 +36,12 @@ const Rect = styled.div`
 `;
 
 const Navigation = styled.ul`
+  margin: 0;
   overflow: auto;
+  padding: 0;
 
   li {
+    list-style: none;
     float: left;
     margin-right: 1em;
     &:last-child {

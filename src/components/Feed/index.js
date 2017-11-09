@@ -1,56 +1,30 @@
 import React, { PropTypes } from 'react';
-import { css, StyleSheet } from 'aphrodite';
+import styled from 'styled-components';
+
 import Post from '../Post';
+
+const Rect = styled.div`
+  margin: 0 auto;
+  max-width: 650px;
+`;
 
 const Feed = (props) => {
   const { posts } = props;
 
-  const Styles = StyleSheet.create({
-    feed: {
-      alignItems: 'center',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      maxWidth: '800px',
-      margin: '0 auto',
-    },
-    post: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      maxWidth: '650px',
-    },
-    leading: {
-      marginBottom: '4em',
-    },
-    terminal: {
-      marginBottom: 0,
-    },
-  });
-
   if (posts) {
     return (
-      <div className={css(Styles.container)}>
-        <div className={css(Styles.feed)}>
-          {posts.map(post => (
-            <Post
-              key={`post-${post.id}`}
-              className={
-                css(
-                  posts[posts.length - 1] === post ? Styles.terminal : Styles.leading,
-                  Styles.post
-                )
-              }
-              created={post.created}
-              content={post.content}
-              summary={posts.length > 1}
-              title={post.title}
-              url={post.url}
-            />
-          ))}
-        </div>
-      </div>
+      <Rect>
+        {posts.map(post => (
+          <Post
+            key={`post-${post.id}`}
+            created={post.created}
+            content={post.content}
+            summary={posts.length > 1}
+            title={post.title}
+            url={post.url}
+          />
+        ))}
+      </Rect>
     );
   }
 

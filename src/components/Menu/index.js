@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
-import { extended } from '../../utils/componentUtils';
 import { push } from 'redux-little-router';
 import styled from 'styled-components';
 
