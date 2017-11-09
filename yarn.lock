@@ -2586,6 +2586,12 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
+express-force-ssl@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/express-force-ssl/-/express-force-ssl-0.3.2.tgz#01b2b498ae6fd2e41152b22b57a3e173773af67e"
+  dependencies:
+    lodash.assign "^3.2.0"
+
 express-graphql@^0.6.4:
   version "0.6.11"
   resolved "https://registry.yarnpkg.com/express-graphql/-/express-graphql-0.6.11.tgz#3dce78d0643e78e7e3606646ce162025ba0585ab"
@@ -4180,7 +4186,7 @@ lodash._isiterateecall@^3.0.0:
   version "3.0.9"
   resolved "https://registry.yarnpkg.com/lodash._isiterateecall/-/lodash._isiterateecall-3.0.9.tgz#5203ad7ba425fae842460e696db9cf3e6aac057c"
 
-lodash.assign@^3.0.0:
+lodash.assign@^3.0.0, lodash.assign@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-3.2.0.tgz#3ce9f0234b4b2223e296b8fa0ac1fee8ebca64fa"
   dependencies:

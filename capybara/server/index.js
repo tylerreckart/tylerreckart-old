@@ -10,6 +10,7 @@ import http from 'http';
 import https from 'https';
 import fs from 'fs';
 import cors from 'cors';
+import forceSsl from 'express-force-ssl';
 // Make sure that we can read external environment variables
 require('dotenv').config();
 
@@ -23,6 +24,7 @@ const router = express.Router();
 
 // Declare subdomain
 app.use(subdomain('api', router));
+// app.use(forceSsl);
 // Connect to PSQL
 app.use(cors(), postgraphql(
   process.env.DATABASE_URL,
@@ -30,10 +32,8 @@ app.use(cors(), postgraphql(
   { graphiql: true }
 ));
 
-const PORT = 8080;
-
 if (process.env.NODE_ENV !== '"production"') {
-  http.createServer(app).listen(PORT, () => (
+  http.createServer(app).listen(8080, () => (
     console.log(`
       POST endpoint available at http://api.${process.env.SITE_URL}/graphql
 
@@ -41,7 +41,7 @@ if (process.env.NODE_ENV !== '"production"') {
     `)
   ));
 } else {
-  https.createServer(credentials, app).listen(PORT, () => (
+  https.createServer(credentials, app).listen(443, () => (
     console.log(`
       POST endpoint available at https://api.${process.env.SITE_URL}/graphql
 
