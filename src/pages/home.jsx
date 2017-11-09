@@ -22,7 +22,7 @@ const Home = (props) => {
   const node = (
     <Rect>
       <Feed posts={posts} />
-      <Pagination />
+      {/* <Pagination /> */}
     </Rect>
   );
 

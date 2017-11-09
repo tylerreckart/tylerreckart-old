@@ -23,7 +23,8 @@ const client = new ApolloClient({
 
 const Body = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 300;
   margin: 0 auto;
 `;
 

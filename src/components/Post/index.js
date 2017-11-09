@@ -1,10 +1,61 @@
 import React, { PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
 import showdown, { Converter } from 'showdown';
-import { extended, formatDate, readingTime, summarize } from '../../utils/componentUtils';
+import { summarize } from '../../utils/componentUtils';
+import styled from 'styled-components';
 import moment from 'moment';
 
-const Post = (props) => {
+const Content = styled.div`
+  line-height: 1.6em;
+  max-width: 650px;
+
+  img {
+    display: block;
+    margin: 1.25em 0;
+    width: 100%;
+  }
+
+  p {
+    margin: 0 0 1.25em 0;
+    code {
+      font-family: Menlo, 'Roboto Mono', monospace;
+    }
+  }
+
+  pre {
+    background-color: rgba(240, 242, 244, .5);
+    border-radius: 3px;
+    font-weight: 300,
+    line-height: 1.5em;
+    margin: 2em 0;
+    overflow: hidden;
+    padding: 1.25em;
+  }
+`;
+
+const Link = styled.a`
+  color: rgba(57, 89, 250, 1.00);
+  display: inline-block;
+  text-decoration: none;
+  &:hover {
+    color: rgba(0, 0, 0, 1.00);
+  }
+`;
+
+const MetaInfo = styled.div`
+  color: #74808E;
+  margin: 1em 0;
+`;
+
+const Title = styled.h1`
+  color: inherit;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.25em;
+  letter-spacing: .05em;
+`;
+
+const Post = props => {
   const {
     className,
     content,
@@ -14,111 +65,28 @@ const Post = (props) => {
     url,
   } = props;
 
-  const Styles = extended.StyleSheet.create({
-    globals: {
-      '*p': {
-        fontWeight: 300,
-        margin: '0 0 1em 0',
-        '*code': {
-          fontFamily: 'Menlo, "Roboto Mono", monospace',
-          fontSize: '13px',
-        },
-      },
-      '*img': {
-        display: 'block',
-        width: '100%',
-        margin: '1em 0',
-      },
-      '*strong': {
-        fontWeight: 600,
-      },
-      '*em': {
-        fontStyle: 'italic',
-      },
-      '*h3': {
-        fontSize: '16px',
-        fontWeight: 600,
-      },
-      '*pre': {
-        lineHeight: '1.5em',
-        padding: '1em',
-        borderRadius: '3px',
-        overflow: 'hidden',
-        margin: '2em 0',
-        backgroundColor: 'rgba(240, 242, 244, .5)',
-        fontWeight: 300,
-      },
-    },
-    meta: {
-      color: '#74808E',
-      display: 'block',
-      fontSize: '14px',
-      fontWeight: 300,
-      margin: '1.25em 0',
-      maxWidth: '650px',
-    },
-    permalink: {
-      color: 'inherit',
-      display: 'inline-block',
-      textDecoration: 'none',
-    },
-    readMore: {
-      color: '#414EF9',
-      fontWeight: 300,
-      margin: '1em 0 0 0',
-    },
-    summary: {
-      fontSize: '16px',
-      lineHeight: '1.75em',
-      maxWidth: '650px',
-    },
-    title: {
-      color: '#414EF9',
-      fontSize: '24px',
-      fontWeight: 500,
-      lineHeight: '1.25em',
-      maxWidth: '650px',
-    },
-    fullWidth: {
-      maxWidth: '650px',
-    }
-  });
+  const preview = summarize(content);
 
-  function convertNewLines(str) {
+  const convertNewLines = str => {
     var $str = str; 
     $str = $str.replace(/\\n/g, '<br />');
     return $str;
   };
 
-  const preview = summarize(content);
-  const converter = content => {
-    return new Converter().makeHtml(convertNewLines(content));
-  };
+  const converter = markdown => (
+    new Converter().makeHtml(convertNewLines(markdown))
+  );
 
-  console.log(props);
+  const renderPost = text => (
+    <div dangerouslySetInnerHTML={{ __html: converter(text) }} />
+  );
 
   return (
-    <div className={css(Styles.fullWidth)}>
-      <div>
-        <h2 className={css(Styles.title)}>
-          <a className={css(Styles.permalink)} href={url}>{title}</a>
-        </h2>
-
-        <span className={css(Styles.meta)}>
-          {moment(created).format("MMMM Do, YYYY")}
-          {/* {formatDate(created)} {{readingTime(content)}} */}
-        </span>
-
-        <div className={css(Styles.summary)}>
-          {
-            !summary ?
-              <div className={extended.css(Styles.globals)} dangerouslySetInnerHTML={{ __html: converter(content) }} />
-             :
-              <div className={extended.css(Styles.globals)} dangerouslySetInnerHTML={{ __html: converter(preview) }} />
-          }
-        </div>
-        {!summary ? null : <a className={css(Styles.permalink, Styles.readMore)} href={url}>Read More</a>}
-      </div>
+    <div>
+      <Title><Link href={url}>{title}</Link></Title>
+      <MetaInfo>{moment(created).format("MMMM Do, YYYY")}</MetaInfo>
+      <Content>{!summary ? renderPost(content) : renderPost(preview)}</Content>
+      {summary ? <Link href={url}>Read More</Link> : null}
     </div>
   );
 };

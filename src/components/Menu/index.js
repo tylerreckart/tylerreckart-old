@@ -1,8 +1,60 @@
 import React, { Component, PropTypes } from 'react';
 import { css, StyleSheet } from 'aphrodite';
-import { Link } from 'redux-little-router';
 import { extended } from '../../utils/componentUtils';
 import { push } from 'redux-little-router';
+import styled from 'styled-components';
+
+const Description = styled.p`
+  margin: 72px 20px 0 20px;
+  text-align: right;
+`;
+
+const Link = styled.a`
+  color: #74808E;
+  display: inline-block;
+  text-decoration: none;
+
+  &:hover {
+    color: rgba(0, 0, 0, 1.00);
+  }
+`;
+
+const Navigation = styled.ul`
+  text-align: right;
+  position: relative;
+  right: 20px;
+  top: 20px;
+
+  li {
+    line-height: 1.6em;
+  }
+`;
+
+const Overlay = styled.div`
+  background-color: #000000;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  opacity: 0.2;
+  position: fixed;
+  top: 0;
+  transition: all 300ms ease-in-out;
+  width: 100%;
+  z-index: 1;
+`;
+
+const Rect = styled.div`
+  background-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+  display: block;
+  height: 100%;
+  line-height: 1.6em;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 350px;
+  z-index: 2;
+`;
 
 const Menu = (props) => {
   const dispatchRoute = (payload) => {
@@ -15,87 +67,30 @@ const Menu = (props) => {
     toggleMenu();
   };
 
-  return (
-    <div>
-      <div className={css(Styles.menu, props.isMenuActive === true ? Styles.menuActive : Styles.menuHidden)}>
-        <p className={css(Styles.description)}>Tyler Reckart is a Software Engineer at <a href="https://boomtownroi.com/" target="_blank">BoomTown</a> focusing on front end architecture and design.</p>
-        <nav>
-          <ul className={extended.css(Styles.globals, Styles.navMenu)}>
-            <li><a href="javascript:void(0)" onClick={() => dispatchRoute('/')}>Journal</a></li>
-            <li><a href="javascript:void(0)" onClick={() => dispatchRoute('/about')}>About</a></li>
-            <li><a href="https://github.com/tylerreckart" target="_blank">Github</a></li>
-            <li><a href="https://twitter.com/tylerreckart" target="_blank">@tylerreckart</a></li>
-          </ul>
-        </nav>
-      </div>
-      <div className={css(Styles.overlay, props.isMenuActive === true ? Styles.overlayActive : Styles.overlayHidden)} />
-    </div>
-  );
-};
+  if (props.isMenuActive) {
+    return (
+      <div>
+        <Rect>
+          <Description>
+            Tyler Reckart is a Software Engineer at <Link href="https://boomtownroi.com/" target="_blank">BoomTown</Link> focusing on front end architecture and design.
+          </Description>
 
-const Styles = StyleSheet.create({
-    globals: {
-      '*li': {
-        lineHeight: '2em',
-        fontSize: '14px',
-        fontWeight: '300',
-        textAlign: 'right',
-      },
-    },
-    bold: {
-      fontWeight: 600,
-    },
-    description: {
-      margin: '72px 20px 0 20px',
-      fontSize: '14px',
-      lineHeight: '1.5em',
-      textAlign: 'right',
-      fontWeight: 300,
-    },
-    menu: {
-      backgroundColor: '#ffffff',
-      boxShadow: '0px 0px 20px rgba(0,0,0,.1)',
-      display: 'block',
-      height: '100%',
-      position: 'fixed',
-      top: 0,
-      transition: 'all 300ms ease-in-out',
-      width: '300px',
-      zIndex: 10,
-    },
-    menuActive: {
-      opacity: 1,
-      right: 0,
-    },
-    menuHidden: {
-      opacity: 0,
-      right: '-300px',
-    },
-    overlay: {
-      backgroundColor: '#000000',
-      height: '100%',
-      left: 0,
-      overflow: 'hidden',
-      position: 'fixed',
-      top: 0,
-      transition: 'opacity 300ms ease-in-out',
-      width: '100%',
-      zIndex: 9,
-    },
-    overlayActive: {
-      opacity: .2,
-      top: 0, // See below
-    },
-    overlayHidden: {
-      opacity: 0,
-      top: '100%', // this is a weird hack to solve a zIndexing issue. This should probably be refactored later on down the road
-    },
-    navMenu: {
-      position: 'relative',
-      textAlign: 'right',
-      top: '20px',
-      right: '20px',
-    },
-});
+          <nav>
+            <Navigation>
+              <li><Link href="javascript:void(0)" onClick={() => dispatchRoute('/')}>Journal</Link></li>
+              <li><Link href="javascript:void(0)" onClick={() => dispatchRoute('/about')}>About</Link></li>
+              <li><Link href="https://github.com/tylerreckart" target="_blank">Github</Link></li>
+              <li><Link href="https://twitter.com/tylerreckart" target="_blank">@tylerreckart</Link></li>
+            </Navigation>
+          </nav>
+        </Rect>
+
+        {props.isMenuActive ? <Overlay /> : null}
+      </div>
+    );
+  }
+  
+  return null;
+};
 
 export default Menu;
