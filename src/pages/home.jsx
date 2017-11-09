@@ -29,13 +29,6 @@ const Home = (props) => {
   return posts.length > 0 ? node : null;  
 };
 
-// This is where you retrieve data from the redux store
-// const mapStateToProps = (state, { params }) => ({});
-
-// Bind dispatch actions that are used to request data from the
-// backend. This gets called in `componentDidMount()`
-// const mapDispatchToProps = (dispatch) => {};
-
 Home.defaultProps = {
   posts: [],
 };

@@ -67,8 +67,8 @@ export function readingTime(string) {
  * @returns
  */
 export function summarize(string) {
-  if (string.length > 350) {
-    return handleStringLength(string, 0, 350);
+  if (string.length > 400) {
+    return handleStringLength(string, 0, 400);
   }
 
   return string;

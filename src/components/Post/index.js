@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 
 const Content = styled.div`
-  line-height: 1.6em;
+  line-height: 1.75em;
   max-width: 650px;
 
   img {
@@ -34,12 +34,9 @@ const Content = styled.div`
 `;
 
 const Link = styled.a`
-  color: rgba(57, 89, 250, 1.00);
+  color: inherit;
   display: inline-block;
   text-decoration: none;
-  &:hover {
-    color: rgba(0, 0, 0, 1.00);
-  }
 `;
 
 const MetaInfo = styled.div`
@@ -48,7 +45,7 @@ const MetaInfo = styled.div`
 `;
 
 const Title = styled.h1`
-  color: inherit;
+  color: #000000;
   font-size: 24px;
   font-weight: 500;
   line-height: 1.25em;
@@ -86,7 +83,7 @@ const Post = props => {
       <Title><Link href={url}>{title}</Link></Title>
       <MetaInfo>{moment(created).format("MMMM Do, YYYY")}</MetaInfo>
       <Content>{!summary ? renderPost(content) : renderPost(preview)}</Content>
-      {summary ? <Link href={url}>Read More</Link> : null}
+      {summary ? <Link href={url} style={{ color: 'rgba(56, 119, 250, 1.00)' }}>Read More</Link> : null}
     </div>
   );
 };

@@ -6,7 +6,7 @@ import Single from '../components/Single';
 const About = () => {
     const Styles = StyleSheet.create({
     container: {
-      marginTop: '100px',
+      marginTop: '80px',
       '@media (max-width: 700px)': {
         display: 'block',
         padding: '0 1.5em',
