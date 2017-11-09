@@ -1,11 +1,11 @@
 # tylerreckart.com  
 Get yourself up and running 
 
-## Development:  
+### Development 
 Install our dependencies  
 ```sh
 yarn install
-```  
+``` 
 Make sure GraphQL & PSQL are running  
 ```sh
 yarn serve
@@ -15,12 +15,14 @@ Start the development server
 yarn start
 ```  
 
-## Testing
+  
+### Testing
 ```sh
 jest
 ```  
+  
 
-## Build & Serve:  
+### Build & Serve  
 Make sure GraphQL & PSQL are running  
 ```sh
 yarn serve
