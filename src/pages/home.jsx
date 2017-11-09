@@ -9,7 +9,7 @@ const Rect = styled.div`
   display: block;
   @media (max-width: 700px) {
     display: block;
-    padding: 0 1.5em;
+    padding: 0 1em;
   }
 `;
 

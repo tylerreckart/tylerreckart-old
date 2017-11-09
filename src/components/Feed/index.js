@@ -6,9 +6,6 @@ const Feed = (props) => {
   const { posts } = props;
 
   const Styles = StyleSheet.create({
-    container: {
-      marginTop: '80px',
-    },
     feed: {
       alignItems: 'center',
       display: 'flex',
@@ -47,7 +44,7 @@ const Feed = (props) => {
               }
               created={post.created}
               content={post.content}
-              summary
+              summary={posts.length > 1}
               title={post.title}
               url={post.url}
             />

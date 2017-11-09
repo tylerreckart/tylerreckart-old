@@ -1,103 +1,78 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { css, StyleSheet } from 'aphrodite';
-import { Link } from 'redux-little-router';
+import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 
-import Menu from '../Menu';
-import Trigger from '../Trigger';
+const Wrapper = styled.div`
+  background: #222232;
+  margin: 0 0 2em 0;
+  padding: 1em 0;
 
-const Rect = styled.div`
-  // background-color: white;
-  // border-bottom: 1px solid #E6E8EB;
-  // box-shadow: 0 0 4px rgba(0,0,0,.10);
-  display: flex;
-  flex-direction: row-reverse;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  z-index: 100;
+  @media (max-width: 700px) {
+    padding: 1em;
+  }
 `;
 
-class Header extends Component {
-    constructor(props) {
-    super(props);
+const Rect = styled.div`
+  color: #ffffff;
+  line-height: 1.75em;
+  margin: 0 auto;
+  width: 650px;
 
-    this.state = {
-      isMenuActive: false,
-    };
-  }
+  a {
+    color: #ABCDFD;
 
-  toggleMenu() {
-    if (this.state.isMenuActive === false) {
-      this.setState({
-        isMenuActive: true,
-      });
-    } else if (this.state.isMenuActive === true) {
-      this.setState({
-        isMenuActive: false,
-      });
+    &:hover {
+      border-bottom: 1px dotted #ABCDFD;
     }
-
-    return;
   }
 
-  render() {
+  p {
+    margin: 0 0 1em 0;
+    max-width: 325px;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+`;
+
+const Navigation = styled.ul`
+  overflow: auto;
+
+  li {
+    float: left;
+    margin-right: 1em;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+`;
+
+const Header = props => {
+  const dispatchRoute = (payload) => {
     const {
-      title,
-    } = this.props;
+      dispatch,
+      toggleMenu
+    } = props;
 
-    const isMenuActive = this.state.isMenuActive;
+    dispatch({ type: 'ROUTER_PUSH', payload: payload });
+  };
+  
+  return (
+    <Wrapper>
+      <Rect>
+        <p>I'm <strong>Tyler Reckart</strong>; a <a href="https://github.com/tylerreckart" target="_blank">Software Engineer</a> at <a href="https://boomtownroi.com" target="_blank">BoomTown</a> focusing on front end architecture and design.</p>
 
-    return (
-      <div>
-        <Rect>
-          <div className={css(Styles.itemWrapper, Styles.menuItemWrapper)}>
-            <Trigger 
-              isMenuActive={isMenuActive}
-              toggleMenu={() => this.toggleMenu()} 
-            />
-          </div>
+        <nav>
+          <Navigation>
+            <li><a href="javascript:void(0)" onClick={() => dispatchRoute('/')}>Journal</a></li>
+            <li><a href="javascript:void(0)" onClick={() => dispatchRoute('/about')}>About</a></li>
+            <li><a href="https://github.com/tylerreckart" target="_blank">Github</a></li>
+            <li><a href="https://twitter.com/tylerreckart" target="_blank">@tylerreckart</a></li>
+          </Navigation>
+        </nav>
+      </Rect>
+    </Wrapper>
+  );
+};
 
-          <Menu
-            {...this.props}
-            isMenuActive={isMenuActive}
-            toggleMenu={() => this.toggleMenu()}
-          />
-
-          <div className={css(Styles.itemWrapper)}>
-            <Link href="/">
-              <div className={css(Styles.profileImg)} />
-            </Link>
-          </div>
-        </Rect>
-      </div>
-    );
-  }
-}
-
-const Styles = StyleSheet.create({
-    profileImg: {
-      background: `url('https://pbs.twimg.com/profile_images/900381304751042560/fX56nnNC_400x400.jpg')`,
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
-      borderRadius: '50%',
-      cursor: 'pointer',
-      height: '32px',
-      width: '32px',
-    },
-    itemWrapper: {
-      padding: '1.5em',
-      position: 'relative',
-      zIndex: 0,
-    },
-    menuItemWrapper: {
-      zIndex: 100,
-    },
-  });
-
-export default connect()(Header);
+export default Header;

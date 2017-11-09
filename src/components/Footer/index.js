@@ -9,19 +9,13 @@ const Styles = StyleSheet.create({
     fontSize: '12px',
     lineHeight: '2em',
     fontWeight: '300',
-    width: '100%',
-    position: 'absolute',
-    bottom: 0,
+    margin: '0 auto',
+    width: '650px',
     '@media (max-width: 700px)': {
       display: 'block',
-      padding: '0 1.5em',
+      padding: '0 1em 2em 1em',
     }
   },
-  hyperlink: {
-    display: 'block',
-    margin: '1.5em',
-    // margin: '0 auto',
-  }
 });
 
 const Footer = () => (
