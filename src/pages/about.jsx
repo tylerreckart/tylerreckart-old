@@ -1,50 +1,39 @@
 import React from 'react';
-import { css, StyleSheet } from 'aphrodite';
+import { gql, graphql } from 'react-apollo';
+import styled from 'styled-components';
 
-import Single from '../components/Single';
+import Post from '../components/Post';
 
-const About = () => {
-    const Styles = StyleSheet.create({
-    container: {
-      marginTop: '80px',
-      '@media (max-width: 700px)': {
-        display: 'block',
-        padding: '0 1em',
-      }
-    },
-    contentWrapper: {
-      alignItems: 'center',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      maxWidth: '800px',
-      margin: '0 auto',
-    },
-    post: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '100%',
-      maxWidth: '900px',
-    },
-    leading: {
-      marginBottom: '4em',
-    },
-    terminal: {
-      marginBottom: 0,
-    },
-  });
+const Rect = styled.div`
+  margin: 0 auto;
+  width: 650px;
+`;
 
+const About = (props) => {
+  const post = props.data.pageById;
 
-  return (
-    <div className={css(Styles.container)}>
-      <div className={css(Styles.contentWrapper)}>
-        <Single
-          title="About"
-        />
-      </div>
-    </div>
-  );
+  if (post) {
+    return (
+      <Rect>
+        <Post
+          datePublished={post.created}
+          content={post.content}
+          summary={false}
+          title={post.title}
+          url={post.url}
+         />
+      </Rect>
+    );
+  }
+
+  return null;
 };
-export default About;
+
+export default graphql(gql`
+  query {
+    pageById(id: 0) {
+      title
+      content
+    }
+  }
+`)(About);

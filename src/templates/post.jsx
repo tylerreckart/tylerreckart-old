@@ -3,7 +3,6 @@ import { css, StyleSheet } from 'aphrodite';
 import { gql, graphql } from 'react-apollo';
 import styled from 'styled-components';
 
-import Single from '../components/Single';
 import Post from '../components/Post';
 
 const Rect = styled.div`
