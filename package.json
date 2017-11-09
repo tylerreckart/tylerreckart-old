@@ -99,6 +99,7 @@
     "update-schema": "babel-node ./capybara/server/updateSchema.js",
     "test": "node ./capybara/scripts/test.js --env=jsdom"
   },
+  "proxy": "http://localhost:8080/",
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"

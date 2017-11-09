@@ -13,12 +13,16 @@ import Portfolio from './pages/portfolio';
 import PostTemplate from './templates/post';
 
 // Apollo
-import ApolloClient, { createNetworkInterface, addTypename } from 'apollo-client';
+import { ApolloClient } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface(process.env.REACT_APP_API_URL),
-  queryTransformer: addTypename,
+  // By default, this client will send queries to the
+  //  `/graphql` endpoint on the same host
+  link: new HttpLink(),
+  cache: new InMemoryCache()
 });
 
 const Body = styled.div`
