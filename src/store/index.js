@@ -35,6 +35,9 @@ const routes = {
   '/about': {
     title: 'Tyler Reckart: About'
   },
+  '/admin': {
+    title: 'Admin'
+  },
   '/portfolio': {
     title: 'Tyler Reckart: Portfolio'
   },

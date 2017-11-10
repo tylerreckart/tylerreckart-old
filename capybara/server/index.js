@@ -1,5 +1,4 @@
-// Declare this right away so that we know what kind of
-// enviornment we're working in
+// Declare this right away so that we know what kind of env we're working in
 process.env.NODE_ENV = 'development';
 
 // Dependencies
@@ -18,11 +17,6 @@ require('dotenv').config();
 const app = express();
 const router = express.Router();
 
-// const credentials = {
-//   key: fs.readFileSync(process.env.SSL_KEY_PATH, 'utf8'),
-//   cert: fs.readFileSync(process.env.SSL_CERT_PATH, 'utf8'),
-// };
-
 app.use(express.static(path.join(__dirname, '../../build')));
 // Declare subdomain
 app.use(subdomain('api', router));
@@ -39,10 +33,25 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname+'../../build/index.html'));
 });
 
-http.createServer(app).listen(8080, () => (
-  console.log(`
-    POST endpoint available at http://api.${process.env.SITE_URL}/graphql
+if (process.env.NODE_ENV !== 'production') {
+  http.createServer(app).listen(8080, () => (
+    console.log(`
+      POST endpoint available at http://api.${process.env.SITE_URL}/graphql
+  
+      GraphiQL IDE available at http://api.${process.env.SITE_URL}/graphiql
+    `)
+  ));
+} else {
+  const credentials = {
+    key: fs.readFileSync(process.env.SSL_KEY_PATH, 'utf8'),
+    cert: fs.readFileSync(process.env.SSL_CERT_PATH, 'utf8'),
+  };
 
-    GraphiQL IDE available at http://api.${process.env.SITE_URL}/graphiql
-  `)
-));
+  http.createServer(app).listen(443, () => (
+    console.log(`
+      POST endpoint available at http://api.${process.env.SITE_URL}/graphql
+  
+      GraphiQL IDE available at http://api.${process.env.SITE_URL}/graphiql
+    `)
+  ));
+}

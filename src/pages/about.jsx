@@ -1,7 +1,12 @@
 import React from 'react';
 import { gql, graphql } from 'react-apollo';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import styled from 'styled-components';
 
+// Components
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import Post from '../components/Post';
 
 const Rect = styled.div`
@@ -10,30 +15,38 @@ const Rect = styled.div`
 `;
 
 const About = (props) => {
-  const post = props.data.pageById;
-
-  if (post) {
-    return (
+  let node;
+  if (props.data.pageById) {
+    node = (
       <Rect>
         <Post
-          datePublished={post.created}
-          content={post.content}
+          content={props.data.pageById.content}
           summary={false}
-          title={post.title}
-          url={post.url}
-         />
+          title={props.data.pageById.title}
+        />
       </Rect>
     );
   }
 
-  return null;
+  return (
+    <div>
+      <Header {...props} />
+        {node}
+      <Footer />
+    </div>
+  );
 };
 
-export default graphql(gql`
-  query {
-    pageById(id: 0) {
-      title
-      content
+export default compose(
+  connect(
+    state => state,
+  ),
+  graphql(gql`
+    query {
+      pageById(id: 0) {
+        title
+        content
+      }
     }
-  }
-`)(About);
+  `),
+)(About);
