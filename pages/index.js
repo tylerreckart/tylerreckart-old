@@ -1,26 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'recompose';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { gql, graphql } from 'react-apollo';
 import styled from 'styled-components';
-
-// Components
-import Header from '../src/components/Header';
-import Footer from '../src/components/Footer';
-import Feed from '../src/components/Feed';
-import Pagination from '../src/components/Pagination';
-
-// Apollo
-import { ApolloClient } from 'apollo-client';
-import { ApolloProvider } from 'react-apollo';
-import { createHttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-
-// by default, this client will send queries to `/graphql` (relative to the URL of your app)
-const client = new ApolloClient({
-  link: createHttpLink({ uri: 'http://localhost:8080/graphql' }),
-  cache: new InMemoryCache(),
-});
+// import Feed from '../components/Feed';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import withData from '../lib/apollo';
 
 const QUERY = gql`
   query {
@@ -43,26 +28,26 @@ const Rect = styled.div`
   }
 `;
 
-const Home = (props) => {
+export default withData(props => {
   let posts = [];
-  if (props.data.allPosts) {
+  if (props.data && props.data.allPosts) {
     posts = props.data.allPosts.nodes;
   }
 
-  const node = (
-    <Rect>
-      <Feed {...props} posts={posts} />
-    </Rect>
-  );
+  // const node = (
+  //   <Rect>
+  //     <Feed {...props} posts={posts} />
+  //   </Rect>
+  // );
 
   return (
-    <ApolloProvider client={client}>
+    <Rect>
       <Header {...props} />
-      {posts.length > 0 ? node : null}
+      {/* {posts.length > 0 ? node : null} */}
       <Footer />
-    </ApolloProvider>
+    </Rect>
   );  
-};
+});
 
 // Home.defaultProps = {
 //   posts: [],
@@ -78,5 +63,3 @@ const Home = (props) => {
 //     url: PropTypes.string
 //   })),
 // };
-
-export default graphql(QUERY)(Home);
