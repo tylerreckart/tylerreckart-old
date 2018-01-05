@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { gql, graphql } from 'react-apollo';
 import styled from 'styled-components';
-// import Feed from '../components/Feed';
+import Feed from '../components/Feed';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import withData from '../lib/apollo';
+import apollo from '../lib/apollo';
+import 'isomorphic-fetch';
+import 'babel-polyfill';
 
-const QUERY = gql`
+const query = gql`
   query {
     allPosts(orderBy: ID_ASC) {
       nodes {
@@ -28,38 +30,45 @@ const Rect = styled.div`
   }
 `;
 
-export default withData(props => {
-  let posts = [];
-  if (props.data && props.data.allPosts) {
-    posts = props.data.allPosts.nodes;
+export default class Home extends Component {
+  static async getInitialProps({ req }) {
+    return await apollo.query({
+      query,
+    });
   }
 
-  // const node = (
-  //   <Rect>
-  //     <Feed {...props} posts={posts} />
-  //   </Rect>
-  // );
+  render() {
+    let posts = [];
+    if (this.props.data && this.props.data.allPosts) {
+      posts = this.props.data.allPosts.nodes;
+    }
+    const node = (
+      <Rect>
+        <Feed {...this.props} posts={posts} />
+      </Rect>
+    );
 
-  return (
-    <Rect>
-      <Header {...props} />
-      {/* {posts.length > 0 ? node : null} */}
-      <Footer />
-    </Rect>
-  );  
-});
+    return (
+      <Rect>
+        <Header {...this.props} />
+        {posts.length > 0 ? node : null}
+        <Footer />
+      </Rect>
+    );
+  }
+}
 
-// Home.defaultProps = {
-//   posts: [],
-// };
+Home.defaultProps = {
+  posts: [],
+};
 
-// Home.propTypes = {
-//   posts: PropTypes.arrayOf(PropTypes.shape({
-//     id: PropTypes.numberd,
-//     created: PropTypes.number,
-//     public: PropTypes.bool,
-//     title: PropTypes.string,
-//     content: PropTypes.string,
-//     url: PropTypes.string
-//   })),
-// };
+Home.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.numberd,
+    created: PropTypes.number,
+    public: PropTypes.bool,
+    title: PropTypes.string,
+    content: PropTypes.string,
+    url: PropTypes.string
+  })),
+};

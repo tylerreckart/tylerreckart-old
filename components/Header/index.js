@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -51,15 +52,6 @@ const Navigation = styled.ul`
 `;
 
 const Header = props => {
-  const dispatchRoute = (payload) => {
-    const {
-      dispatch,
-      toggleMenu
-    } = props;
-
-    dispatch({ type: 'ROUTER_PUSH', payload: payload });
-  };
-  
   return (
     <Wrapper>
       <Rect>
@@ -67,8 +59,8 @@ const Header = props => {
 
         <nav>
           <Navigation>
-            <li><a href="javascript:void(0)" onClick={() => dispatchRoute('/')}>Journal</a></li>
-            <li><a href="javascript:void(0)" onClick={() => dispatchRoute('/about')}>About</a></li>
+            <li><a href="/">Journal</a></li>
+            <li><a href="/about">About</a></li>
             <li><a href="https://github.com/tylerreckart" target="_blank">Github</a></li>
             <li><a href="https://twitter.com/tylerreckart" target="_blank">@tylerreckart</a></li>
           </Navigation>

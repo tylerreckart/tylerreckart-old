@@ -5,13 +5,13 @@ import { compose } from 'recompose';
 import styled from 'styled-components';
 
 // Components
-import Header from '../src/components/Header';
-import Footer from '../src/components/Footer';
-import Post from '../src/components/Post';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Post from '../components/Post';
 
 const QUERY = gql`
   query {
-    postById(id: $pageId: Int!) {
+    postById(id: 0) {
       title
       created
       content
