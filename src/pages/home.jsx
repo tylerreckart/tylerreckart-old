@@ -26,7 +26,7 @@ const Home = (props) => {
 
   const node = (
     <Rect>
-      <Feed posts={posts} />
+      <Feed {...props} posts={posts} />
       {/* <Pagination /> */}
     </Rect>
   );

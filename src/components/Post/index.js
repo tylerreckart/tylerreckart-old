@@ -78,6 +78,7 @@ const Post = props => {
     className,
     content,
     created,
+    dispatch,
     summary,
     title,
     url,
@@ -110,7 +111,7 @@ const Post = props => {
 
   return (
     <div>
-      <Title><Link href={url}>{title}</Link></Title>
+      <Title><Link href="javascript:void(0)" onClick={() => dispatchRoute(url)}>{title}</Link></Title>
       {created ? <MetaInfo>{moment(created).format("MMMM Do, YYYY")}</MetaInfo> : <Void />}
       <Content>{!summary ? renderPost(content) : renderPost(preview)}</Content>
       {summary ? <Link onClick={() => dispatchRoute(url)}>Read More</Link> : null}

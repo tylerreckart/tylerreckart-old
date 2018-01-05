@@ -14,10 +14,12 @@ const PostTemplate = (props) => {
   const post = props.data.postById;
 
   if (post) {
+    console.log(props);
     return (
       <Rect>
         <Post
           datePublished={post.created}
+          dispatch={props.dispatch}
           content={post.content}
           created={post.created}
           summary={false}

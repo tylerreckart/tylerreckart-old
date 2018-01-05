@@ -63,7 +63,7 @@ const Header = props => {
   return (
     <Wrapper>
       <Rect>
-        <p>I'm <strong>Tyler Reckart</strong>; a <a href="https://github.com/tylerreckart" target="_blank">Software Engineer</a> at <a href="https://boomtownroi.com" target="_blank">BoomTown</a> focusing on front end architecture and design.</p>
+        <p>I'm <strong>Tyler Reckart</strong>; a <a href="https://github.com/tylerreckart" target="_blank">software developer</a> at <a href="https://boomtownroi.com" target="_blank">BoomTown</a> focusing on front end architecture and design.</p>
 
         <nav>
           <Navigation>

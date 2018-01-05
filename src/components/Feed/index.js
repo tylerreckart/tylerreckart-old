@@ -9,7 +9,10 @@ const Rect = styled.div`
 `;
 
 const Feed = (props) => {
-  const { posts } = props;
+  const {
+    dispatch,
+    posts
+  } = props;
 
   if (posts) {
     return (
@@ -19,6 +22,7 @@ const Feed = (props) => {
             key={`post-${post.id}`}
             created={post.created}
             content={post.content}
+            dispatch={dispatch}
             summary={posts.length > 1}
             title={post.title}
             url={post.url}

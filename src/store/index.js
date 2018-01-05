@@ -1,10 +1,8 @@
+import express from 'express';
 import { combineReducers, compose, createStore, applyMiddleware } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import thunk from 'redux-thunk';
 import Raven from 'raven-js';
-import { routerForBrowser, initializeCurrentLocation } from 'redux-little-router';
-
-// import post from '../reducers/posts';
 
 const logger = store => next => (action) => {
   console.log('dispatching', action);
@@ -28,52 +26,11 @@ const crashReporter = store => next => (action) => {
   }
 };
 
-const routes = {
-  '/': {
-    title: 'Tyler Reckart'
-  },
-  '/about': {
-    title: 'Tyler Reckart: About'
-  },
-  '/admin': {
-    title: 'Admin'
-  },
-  '/portfolio': {
-    title: 'Tyler Reckart: Portfolio'
-  },
-  '/journal': {
-    title: 'Tyler Reckart: Journal',
-    '/:post': {
-      title: ''
-    }
-  },
-};
-
-const {
-  reducer,
-  middleware,
-  enhancer,
-} = routerForBrowser({
-  // The configrued routes. **Required**
-  routes,
-});
-
 const initialState = {
-//   post: {
-//     posts: [],
-//     isFetching: true,
-//   }
+  // Basic config goes here
 };
 
-const composedMiddleware = [
-  applyMiddleware(thunk, middleware)
-];
-
-const store = createStore(
-  combineReducers({ router: reducer }),
-  initialState,
-  compose(enhancer, ...composedMiddleware)
-);
+const store = createStore(initialState);
 
 persistStore(store);
 

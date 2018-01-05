@@ -1,26 +1,26 @@
 import React, { Component, PropTypes } from 'react';
-import { Fragment } from 'redux-little-router';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 import styled from 'styled-components';
 
 // Pages
 import Home from './pages/home';
 import About from './pages/about';
-import Login from './pages/login';
-// import Portfolio from './pages/portfolio';
-// Templates
-import PostTemplate from './templates/post';
+import Single from './pages/single';
 
 // Apollo
 import { ApolloClient } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
-import { HttpLink } from 'apollo-link-http';
+import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
+// by default, this client will send queries to `/graphql` (relative to the URL of your app)
 const client = new ApolloClient({
-  // By default, this client will send queries to the
-  //  `/graphql` endpoint on the same host
-  link: new HttpLink(),
-  cache: new InMemoryCache()
+  link: createHttpLink({ uri: 'http://localhost:8080/graphql' }),
+  cache: new InMemoryCache(),
 });
 
 const Body = styled.div`
@@ -31,26 +31,29 @@ const Body = styled.div`
   width: 100%;
 `;
 
+const NoMatch = ({ location }) => (
+  <div>
+    <h3>No match for <code>{location.pathname}</code></h3>
+  </div>
+);
+
 export default class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <Fragment forRoute="/">
+        <h1>Hello</h1>
+        <Router>
           <Body>
-            <Fragment forRoute="/"><Home /></Fragment>
-            <Fragment forRoute='/about'><About /></Fragment>
-            {/* <Fragment forRoute='/portfolio'><Portfolio /></Fragment> */}
-            <Fragment forRoute='/journal/:post'><PostTemplate /></Fragment>
-            <Fragment forRoute="/admin">
-              <Login />
-            </Fragment>
-
-            <Fragment forNoMatch>
-              <h1>Not found!</h1>
-              <p>It looks like the page you're looking for doesn't exist.</p>
-            </Fragment>
+            <Route exact path="/" render={() => (
+              <Home {...this.props} />
+            )} />
+            <Route path="/about" component={About} />
+            <Route path="/journal/:id" render={() => (
+              <Single {...this.props} />
+            )} />
+            <Route component={NoMatch} />
           </Body>
-        </Fragment>
+        </Router>
       </ApolloProvider>
     );
   }
